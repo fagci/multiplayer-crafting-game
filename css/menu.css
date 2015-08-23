@@ -1,0 +1,29 @@
+.menu-main {
+    position: absolute;
+    bottom: 50px;
+    padding: 15px;
+    cursor: default;
+}
+
+.menu-header {
+    margin: 0;
+}
+
+.menu-list {
+    padding: 0;
+}
+
+.menu-item {
+    transition: 0.2s ease;
+    cursor: pointer;
+    display: inline-block;
+    float: left;
+    clear: both;
+    padding: 5px 15px;
+    border-left: 3px solid transparent;
+}
+
+.menu-item:hover {
+    border-color: #ffffff;
+    color: white;
+}

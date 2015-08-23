@@ -1,0 +1,105 @@
+@keyframes loadingGlow {
+    from {
+        left: 0;
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    to {
+        left: 100%;
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes loadingGlow {
+    from {
+        left: 0;
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    to {
+        left: 100%;
+        opacity: 0;
+    }
+}
+
+@keyframes glowing {
+    from {
+        box-shadow: 0 0 0 #0088cc;
+    }
+    to {
+        box-shadow: 0 0 5px #0088cc;
+    }
+}
+
+@-webkit-keyframes glowing {
+    from {
+        box-shadow: 0 0 0 #0088cc;
+    }
+    to {
+        box-shadow: 0 0 5px #0088cc;
+    }
+}
+
+.loading-overlay {
+    display: none;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-size: 0.8em;
+}
+
+.loading-panel {
+    width: 50%;
+    padding: 10px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    text-align: left;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.loading-label {
+    color: #00ccff;
+    line-height: 1em;
+    float: left;
+}
+
+.loading-progressbar {
+    float: left;
+    clear: both;
+    width: 100%;
+    background-color: #cccccc;
+    height: 10px;
+    margin-top: 5px;
+    border-radius: 1px;
+    position: relative;
+}
+
+.loading-glow {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    box-shadow: 0 0 3px white;
+    background-color: white;
+    opacity: 0.6;
+    width: 2px;
+    animation: loadingGlow 2s infinite ease-in-out;
+    -webkit-animation: loadingGlow 2s infinite ease-in-out;
+}
+
+.loading-progress {
+    transition: ease 0.25s;
+    background: #0088cc;
+    width: 35%;
+    height: 100%;
+    position: absolute;
+    box-shadow: 0 0 5px #0088cc;
+    animation: glowing 2s infinite alternate;
+    -webkit-animation: glowing 2s infinite alternate;
+}

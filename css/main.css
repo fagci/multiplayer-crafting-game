@@ -1,0 +1,21 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    color: #00ccff;
+    font-family: sans-serif;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.panel {
+    background: rgba(0, 0, 0, 0.5);
+}

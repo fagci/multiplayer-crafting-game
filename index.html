@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>THREE.js testing</title>
+    <link href="css/main.css" rel="stylesheet" type="text/css"/>
+    <link href="css/progresspanel.css" rel="stylesheet" type="text/css"/>
+    <link href="css/menu.css" rel="stylesheet" type="text/css"/>
+    <link href="css/settings.css" rel="stylesheet" type="text/css"/>
+    <script src="js/config.js"></script>
+    <script data-main="../main" src="js/vendor/require.js"></script>
+</head>
+<body>
+<div class="loading-overlay">
+    <span class="loading-panel panel">
+        <span class="loading-label">Loading...</span>
+        <span class="loading-progressbar">
+            <span class="loading-progress">
+                <span class="loading-glow"></span>
+            </span>
+        </span>
+    </span>
+</div>
+<div class="menu-main">
+    <h1 class="menu-header">Main menu</h1>
+    <ul class="menu-list">
+        <li class="menu-item" data-action="newGame">New game</li>
+        <li class="menu-item" data-action="loadGame">Load game</li>
+        <li class="menu-item" data-action="playOnline">Play online</li>
+        <li class="menu-item" data-action="settings">Settings</li>
+        <li class="menu-item" data-action="credits">Credits</li>
+    </ul>
+</div>
+<div class="settings panel" title="Settings">
+    <form class="settings-form">
+        <fieldset>
+            <legend>Graphics</legend>
+            <span class="control-group">
+                <input type="checkbox" name="antialiasing" value="1" id="antialiasing"/>
+                <label for="antialiasing">antialiasing</label>
+            </span>
+            <span class="control-group">
+                <input type="checkbox" name="shadows" value="1" id="shadows"/>
+                <label for="shadows">shadows</label>
+            </span>
+            <br/>
+            <span class="control-group">
+                <label for="precision">Shader precision</label>
+                <select name="precision" id="precision">
+                    <option value="lowp">Low</option>
+                    <option value="mediump">Medium</option>
+                    <option value="highp">High</option>
+                </select>
+            </span>
+        </fieldset>
+    </form>
+</div>
+</body>
+</html>
