@@ -9,11 +9,11 @@ var require = {
         'jquery.ui': { exports: 'jQuery.fn.ui', deps: ['jquery'] },
         'stats': {exports: 'Stats'}
     },
-    // Third party code lives in js/lib
+    // Third party code lives in js/vendor
     paths: {
         three: '../vendor/three',
         stats: '../vendor/stats.min',
-        //jquery: '../vendor/jquery',
+        Howler: '../vendor/howler.min',
         jquery: '../vendor/jquery-2.1.4.min',
         'jquery.ui': '../vendor/jquery-ui.min',
 

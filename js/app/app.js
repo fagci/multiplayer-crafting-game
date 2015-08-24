@@ -8,6 +8,7 @@ define(function (require) {
             settings        = require('settings'),
             stats           = require('fpsStats'),
             texture_loader  = require('texture'),
+            sound_loader    = require('sound'),
             loading_manager = require('loadingmanager');
 
         var app = {
@@ -26,6 +27,16 @@ define(function (require) {
                     requestAnimationFrame(app.animate);
                 };
                 texture_loader.loadTextures();
+
+                menu.onhover = function () {
+                    console.log('Menu hover');
+                    sound_loader.click.stop().play();
+                };
+                menu.onclick = function (a) {
+                    console.log(a);
+                    if (a == 'settings') $('.settings').dialog('open');
+                    //if (a == 'credits') THREEx.FullScreen.request();
+                };
             },
 
             initScene: function () {
@@ -41,24 +52,6 @@ define(function (require) {
                     settings[item.name] = item.value;
                 }
             },
-            /*
-             initStateManager: function () {
-             var menu     = new MenuHandler();
-             var hover    = new buzz.sound('assets/sfx/click.wav', {
-             preload: true,
-             webAudioApi: true
-             });
-             menu.onhover = function () {
-             console.log('Menu hover');
-             hover.stop().play();
-             };
-             menu.onclick = function (a) {
-             console.log(a);
-             if (a == 'settings') $('.settings').dialog('open');
-             if (a == 'credits') THREEx.FullScreen.request();
-             };
-             },
-             */
             animate: function () {
                 stats.begin();
                 app.update(app.clock.getDelta());
