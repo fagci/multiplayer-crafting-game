@@ -1,5 +1,15 @@
-define(['three', 'camera', 'light', 'renderer', 'scenes/main', 'menu', 'settings', 'fpsStats', 'loadingmanager'],
-    function (THREE, camera, light, renderer, scene, menu, settings, stats, loadingmanager) {
+define(function (require) {
+        var THREE           = require('three'),
+            camera          = require('camera'),
+            light           = require('light'),
+            renderer        = require('renderer'),
+            scene           = require('scenes/main'),
+            menu            = require('menu'),
+            settings        = require('settings'),
+            stats           = require('fpsStats'),
+            texture_loader  = require('texture'),
+            loading_manager = require('loadingmanager');
+
         var app = {
             clock: false,
             update: function (delta) {
@@ -7,16 +17,18 @@ define(['three', 'camera', 'light', 'renderer', 'scenes/main', 'menu', 'settings
             },
 
             init: function () {
-                settings.onchange = app.onSettingsChange;
-                app.clock         = new THREE.Clock();
-                loadingmanager.onLoad = function(){
-                    "use strict";
+                console.info('Init');
+                settings.onchange      = app.onSettingsChange;
+                app.clock              = new THREE.Clock();
+                loading_manager.onLoad = function () {
+                    console.info('LM Load');
                     app.initScene();
                     requestAnimationFrame(app.animate);
                 };
+                texture_loader.loadTextures();
             },
 
-            initScene: function(){
+            initScene: function () {
                 scene.init();
             },
 

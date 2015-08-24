@@ -1,4 +1,5 @@
 define(['three', 'texture'], function (THREE, texture) {
+    console.info('Rain: ',texture);
     var rMaterial           = new THREE.PointCloudMaterial({
         color: 0x6c7c8c,
         size: 6,
