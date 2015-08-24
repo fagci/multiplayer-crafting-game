@@ -1,4 +1,4 @@
-define(['three', 'camera', 'light', 'renderer', 'scenes/main', 'menu', 'settings', 'stats', 'loadingmanager'],
+define(['three', 'camera', 'light', 'renderer', 'scenes/main', 'menu', 'settings', 'fpsStats', 'loadingmanager'],
     function (THREE, camera, light, renderer, scene, menu, settings, stats, loadingmanager) {
         var app = {
             clock: false,
@@ -7,17 +7,18 @@ define(['three', 'camera', 'light', 'renderer', 'scenes/main', 'menu', 'settings
             },
 
             init: function () {
-                $('.settings').dialog({
-                    autoOpen: false,
-                    height: 200,
-                    width: 350,
-                    modal: true
-                });
-
                 settings.onchange = app.onSettingsChange;
                 app.clock         = new THREE.Clock();
+                loadingmanager.onLoad = function(){
+                    "use strict";
+                    app.initScene();
+                    requestAnimationFrame(app.animate);
+                };
             },
 
+            initScene: function(){
+                scene.init();
+            },
 
             onSettingsChange: function (s) {
                 console.log('Settings change', s);
@@ -48,8 +49,8 @@ define(['three', 'camera', 'light', 'renderer', 'scenes/main', 'menu', 'settings
              */
             animate: function () {
                 stats.begin();
-                app.update(clock.getDelta());
-                renderer.animate(scene, camera);
+                app.update(app.clock.getDelta());
+                renderer.render(scene, camera);
                 stats.end();
                 requestAnimationFrame(app.animate);
             }

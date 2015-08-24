@@ -1,4 +1,4 @@
-define(['jquery'], function ($) {
+define(['jquery', 'jquery.ui'], function ($) {
     var $settingsForm = $('.settings-form'),
         settings      = {};
 
@@ -31,5 +31,13 @@ define(['jquery'], function ($) {
         window.localStorage.setItem('settings', JSON.stringify(s));
         settings.onchange && settings.onchange(s);
     }).change();
+
+    $('.settings').dialog({
+        autoOpen: false,
+        height: 200,
+        width: 350,
+        modal: true
+    });
+
     return settings;
 });
