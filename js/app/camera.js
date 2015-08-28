@@ -1,4 +1,5 @@
 define(['three'], function (THREE) {
+    console.info('Init camera...');
     var camera = new THREE.PerspectiveCamera(45, 1, 1, 2000);
 
     camera.position.y = 100;

@@ -1,4 +1,5 @@
-define(['three', 'loadingprogress'], function (THREE, loading_progress) {
+define(['three', 'loadingprogress', 'app'], function (THREE, loading_progress, app) {
+    console.info('Init loadingmanager...');
     var loading_manager = new THREE.LoadingManager();
 
     loading_manager.onProgress = function (name, i, total) {

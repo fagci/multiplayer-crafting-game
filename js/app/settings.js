@@ -1,4 +1,5 @@
 define(['jquery', 'jquery.ui'], function ($) {
+    console.info('Init settings...');
     var $settingsForm = $('.settings-form'),
         settings      = {};
 

@@ -1,43 +1,24 @@
-define(['three', 'texture'], function (THREE, texture) {
-    console.info('Rain: ',texture);
-    var rMaterial           = new THREE.PointCloudMaterial({
-        color: 0x6c7c8c,
-        size: 6,
-        sizeAttenuation: true,
-        transparent: true,
-        depthTest: true,
-        depthWrite: true,
-        alphaTest: 0.1,
-        opacity: 0.8,
-        map: texture.raindrop
+define(['three', 'SPE', 'particleGroup'], function (THREE, SPE, pg) {
+    console.info('Init rain module...');
+    var rain = new SPE.Emitter({
+        type: 'cube',
+        position: new THREE.Vector3(0, 0, 0),
+        positionSpread: new THREE.Vector3(200, 200, 200),
+
+        acceleration: new THREE.Vector3(0, 0, 0),
+
+        velocity: new THREE.Vector3(0, 0, 0),
+        velocitySpread: new THREE.Vector3(0, 0, 0),
+        //particlesPerSecond: 0,
+        sizeStart: 40,
+        sizeEnd: 40,
+        opacityStart: 1,
+        opacityEnd: 1,
+        //colorStart: new THREE.Color('blue'),
+        //colorEnd: new THREE.Color('white')
     });
-    rMaterial.map.minFilter = THREE.LinearFilter;
-    var rain_particles      = new THREE.Geometry();
-    var r, r_x, r_y, r_z;
-    for (r = 0; r < 6000; r++) {
-        r_y = Math.random() * 250;
-        r_x = Math.random() * 250;
-        r_z = Math.random() * 250;
 
-        rain_particles.vertices.push(new THREE.Vector3(r_x, r_y, r_z));
-    }
+    pg.addEmitter(rain);
 
-    var rain           = new THREE.PointCloud(rain_particles, rMaterial);
-    rain.name          = 'rain';
-    rain.receiveShadow = true;
-    rain.castShadow    = true;
-    rain.update        = function (delta) {
-        this.geometry.vertices.forEach(function (point) {
-            point.y -= 150 * delta;
-            point.x += 2 * delta;
-            point.z += 2 * delta;
-            if (point.y <= 0) {
-                point.y = 250;
-                point.x = Math.random() * 250;
-                point.z = Math.random() * 250;
-            }
-        });
-        this.geometry.verticesNeedUpdate = true;
-    };
     return rain;
 });

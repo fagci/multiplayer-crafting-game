@@ -1,18 +1,18 @@
-define(['Howler'], function(Howler){
+define(['jquery','Howler'], function($, Howler){
     var SFX = ['click.wav'],
         i, sound, sounds = {};
 
-    console.info('Loading sfx...',Howler);
+    console.info('Loading sfx...');
     for(i in SFX){
         if(!SFX.hasOwnProperty(i)) continue;
-        sound = new Howler.Howl({
-            urls: ['assets/sfx/' + SFX[i]],
+        sound = new Howl({
+            urls: ['sfx/' + SFX[i]],
             buffer: true,
-            onload: function(e){
-                console.info('Loaded sfx',e);
+            onload: function(){
+                console.info('Loaded sfx',this._src);
             },
-            onerror: function(e){
-                console.info('Loaded sfx err',e);
+            onerror: function(){
+                console.error('Load sfx err',this._src);
             }
         });
 

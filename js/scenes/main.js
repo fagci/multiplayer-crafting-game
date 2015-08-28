@@ -1,13 +1,19 @@
 define([
     'three',
     'camera',
-    'texture',
+    'textureManager',
     'scene',
-    'materials/lambert'
-], function (THREE, camera, texture, scene, lambert_material) {
-    scene.init = function() {
+    'materials/lambert',
+    'particleGroup',
+    'meshes/rain'
+], function (THREE, camera, textureManager, scene, lambert_material, pg, rain) {
+    scene.update = function (d) {
+        "use strict";
+        pg.tick(d);
+    };
+    scene.init   = function () {
         console.info('Init scene');
-        lambert_material.map = texture.sand;
+        lambert_material.map = textureManager.sand;
 
         var plane_geometry = new THREE.PlaneBufferGeometry(1200, 1200, 1, 1),
             plane          = new THREE.Mesh(plane_geometry, lambert_material);
@@ -23,12 +29,9 @@ define([
         sphere.receiveShadow = true;
         sphere.castShadow    = true;
 
-        require(['meshes/rain'], function (rain) {
-            scene.add(rain);
-        });
-
         scene.add(plane);
         scene.add(sphere);
+        scene.add(pg.mesh);
 
         camera.lookAt(scene.position);
 

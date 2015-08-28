@@ -11,6 +11,7 @@
     opacity: 0;
   }
 }
+
 @-webkit-keyframes loadingGlow {
   from {
     left: 0;
@@ -24,6 +25,7 @@
     opacity: 0;
   }
 }
+
 @keyframes glowing {
   from {
     box-shadow: 0 0 0 #0088cc;
@@ -32,6 +34,7 @@
     box-shadow: 0 0 5px #0088cc;
   }
 }
+
 @-webkit-keyframes glowing {
   from {
     box-shadow: 0 0 0 #0088cc;
@@ -40,6 +43,7 @@
     box-shadow: 0 0 5px #0088cc;
   }
 }
+
 .loading-overlay {
   display: none;
   position: absolute;
@@ -49,6 +53,7 @@
   text-align: center;
   font-size: 0.8em;
 }
+
 .loading-panel {
   width: 50%;
   padding: 10px;
@@ -58,11 +63,13 @@
   display: inline-block;
   vertical-align: middle;
 }
+
 .loading-label {
   color: #00ccff;
   line-height: 1em;
   float: left;
 }
+
 .loading-progressbar {
   float: left;
   clear: both;
@@ -73,6 +80,7 @@
   border-radius: 1px;
   position: relative;
 }
+
 .loading-glow {
   position: absolute;
   top: 0;
@@ -84,6 +92,7 @@
   animation: loadingGlow 2s infinite ease-in-out;
   -webkit-animation: loadingGlow 2s infinite ease-in-out;
 }
+
 .loading-progress {
   transition: ease 0.25s;
   background: #0088cc;

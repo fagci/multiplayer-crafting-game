@@ -1,4 +1,5 @@
 define(['three', 'settings'], function (THREE, settings) {
+    console.log('Init renderer...');
     var renderer = new THREE.WebGLRenderer({
         antialias: !!settings.antialiasing
     });
@@ -6,7 +7,6 @@ define(['three', 'settings'], function (THREE, settings) {
     renderer.shadowMapEnabled = !!settings.shadows;
     renderer.shadowMapType    = THREE.PCFSoftShadowMap;
     document.body.appendChild(renderer.domElement);
-
 
     function updateSize() {
         renderer.setSize(window.innerWidth, window.innerHeight);

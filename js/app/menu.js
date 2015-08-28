@@ -1,4 +1,5 @@
 define(['jquery'], function ($) {
+    console.log('Init menu...');
     var $menuItems = $('.menu-item'),
         menu       = {};
 

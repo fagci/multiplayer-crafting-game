@@ -1,50 +1,51 @@
 define(function (require) {
+        console.info('[Entrypoint]');
         var THREE           = require('three'),
             camera          = require('camera'),
             light           = require('light'),
             renderer        = require('renderer'),
-            scene           = require('scenes/main'),
             menu            = require('menu'),
             settings        = require('settings'),
             stats           = require('fpsStats'),
-            texture_loader  = require('texture'),
             sound_loader    = require('sound'),
+            scene,
             loading_manager = require('loadingmanager');
 
         var app = {
             clock: false,
             update: function (delta) {
-                //scene.getObjectByName('rain').update(delta);
+                scene.update(delta);
             },
 
             init: function () {
-                console.info('Init');
+                console.warn('Init');
                 settings.onchange      = app.onSettingsChange;
+                loading_manager.onload = app.initScene;
                 app.clock              = new THREE.Clock();
-                loading_manager.onLoad = function () {
-                    console.info('LM Load');
-                    app.initScene();
-                    requestAnimationFrame(app.animate);
-                };
-                texture_loader.loadTextures();
 
                 menu.onhover = function () {
                     console.log('Menu hover');
-                    sound_loader.click.stop().play();
+                    sound_loader.click.play();
                 };
                 menu.onclick = function (a) {
                     console.log(a);
                     if (a == 'settings') $('.settings').dialog('open');
                     //if (a == 'credits') THREEx.FullScreen.request();
+                    if (a == 'newGame') {
+                        scene = require('scenes/main');
+                        app.initScene();
+                    }
                 };
+
             },
 
-            initScene: function () {
+            initScene: function(){
                 scene.init();
+                app.animate();
             },
 
             onSettingsChange: function (s) {
-                console.log('Settings change', s);
+                console.warn('Settings change', s);
                 var i, item;
                 for (i in s) {
                     if (!s.hasOwnProperty(i)) continue;
@@ -52,12 +53,13 @@ define(function (require) {
                     settings[item.name] = item.value;
                 }
             },
+
             animate: function () {
-                stats.begin();
+                requestAnimationFrame(app.animate);
                 app.update(app.clock.getDelta());
                 renderer.render(scene, camera);
-                stats.end();
-                requestAnimationFrame(app.animate);
+                stats('FPS').frame();
+                stats().update();
             }
         };
         return app;
