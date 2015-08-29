@@ -14,7 +14,7 @@ define(function (require) {
         var app = {
             clock: false,
             update: function (delta) {
-                scene.update(delta);
+                scene && scene.update(delta);
             },
 
             init: function () {
@@ -29,19 +29,22 @@ define(function (require) {
                 };
                 menu.onclick = function (a) {
                     console.log(a);
-                    if (a == 'settings') $('.settings').dialog('open');
-                    //if (a == 'credits') THREEx.FullScreen.request();
-                    if (a == 'newGame') {
-                        scene = require('scenes/main');
-                        app.initScene();
+                    switch (a) {
+                        case 'settings':
+                            $('.settings').dialog('open');
+                            break;
+                        case 'newGame':
+                            THREEx.FullScreen.request();
+                            break;
                     }
                 };
-
+                scene        = require('scenes/main');
+                app.initScene();
+                app.animate();
             },
 
-            initScene: function(){
+            initScene: function () {
                 scene.init();
-                app.animate();
             },
 
             onSettingsChange: function (s) {
@@ -57,7 +60,7 @@ define(function (require) {
             animate: function () {
                 requestAnimationFrame(app.animate);
                 app.update(app.clock.getDelta());
-                renderer.render(scene, camera);
+                scene && renderer.render(scene, camera);
                 stats('FPS').frame();
                 stats().update();
             }

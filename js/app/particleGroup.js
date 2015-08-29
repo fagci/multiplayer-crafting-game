@@ -2,11 +2,13 @@ define(['SPE', 'textureManager'], function(SPE, textureManager){
     "use strict";
     /** @global THREE.TextureLoader loader */
         console.info('Init particle group');
+    textureManager.raindrop.minFilter = THREE.NearestFilter;
+    textureManager.raindrop.flipY     = false;
     var particleGroup = new SPE.Group({
-        texture: textureManager.testHex,
-        maxAge: 2,
+        texture: textureManager.raindrop,
+        maxAge: 3,
         //hasPerspective: true,
-        //colorize: true,
+        colorize: true,
 
         // [OPTIONAL] What blending style should be used?
         // THREE.NoBlending
@@ -14,7 +16,7 @@ define(['SPE', 'textureManager'], function(SPE, textureManager){
         // THREE.AdditiveBlending
         // THREE.SubtractiveBlending
         // THREE.MultiplyBlending
-        //blending: THREE.NormalBlending,
+        blending: THREE.AdditiveBlending,
         //transparent: true,
         //alphaTest: 0.5,
         //depthWrite: true,
