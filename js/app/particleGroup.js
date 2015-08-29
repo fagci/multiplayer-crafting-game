@@ -6,7 +6,7 @@ define(['SPE', 'textureManager'], function(SPE, textureManager){
     textureManager.raindrop.flipY     = false;
     var particleGroup = new SPE.Group({
         texture: textureManager.raindrop,
-        maxAge: 3,
+        maxAge: 1,
         //hasPerspective: true,
         colorize: true,
 

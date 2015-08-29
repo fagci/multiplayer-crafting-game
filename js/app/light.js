@@ -4,11 +4,12 @@ define(['three', 'scene'], function (THREE, scene) {
     hemiLight.color.setHSL(0.6, 0.75, 0.5);
     hemiLight.groundColor.setHSL(0.095, 0.5, 0.5);
     hemiLight.position.set(0, 200, 0);
+    hemiLight.name = 'Hemisphere light';
 
     var dirLight  = new THREE.DirectionalLight(0xffffff, 2);
     dirLight.position.set(-1, 0.75, 1);
     dirLight.position.multiplyScalar(50);
-    dirLight.name = "dirlight";
+    dirLight.name  = "Directional light";
 
     dirLight.castShadow     = true;
     dirLight.shadowMapWidth = dirLight.shadowMapHeight = 1024 * 2;

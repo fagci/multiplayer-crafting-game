@@ -4,26 +4,45 @@ define([
     'textureManager',
     'scene',
     'materials/lambert',
-    'particleGroup',
-    'meshes/rain'
-], function (THREE, camera, textureManager, scene, lambert_material, pg, rain) {
+    'perlin'
+], function (THREE, camera, textureManager, scene, lambert_material, perlin) {
     scene.update = function (d) {
         "use strict";
-        pg.tick(d);
+
     };
     scene.init   = function () {
         console.info('Init scene');
-        lambert_material.map = textureManager.sand;
+        textureManager.t.wrapS = THREE.RepeatWrapping;
+        textureManager.t.wrapT = THREE.RepeatWrapping;
+        textureManager.t.repeat.set(10, 10);
+        lambert_material.map   = textureManager.t;
 
-        var plane_geometry = new THREE.PlaneBufferGeometry(1200, 1200, 1, 1),
+        var plane_geometry = new THREE.PlaneGeometry(10, 10, 100, 100),
             plane          = new THREE.Mesh(plane_geometry, lambert_material);
 
         plane.rotation.x = -Math.PI / 2;
+        plane.name         = 'Ground';
 
-        var sphere_geometry = new THREE.SphereGeometry(20, 32, 32),
-            sphere          = new THREE.Mesh(sphere_geometry, lambert_material);
+        var quality = 100, height;
 
-        sphere.position.y = 20;
+        perlin.seed(333);
+
+        for (var i = 0, l = plane_geometry.vertices.length; i < l; i++) {
+            var x                        = i % quality, y = Math.floor(i / quality);
+            height                       = Math.abs(perlin.perlin3((x + 100) / 100, (y + 100) / 100, i / 10000)) / 2;
+            plane_geometry.vertices[i].z = height;
+
+        }
+
+
+        var sphere_geometry = new THREE.SphereGeometry(0.5, 32, 32),
+            sphere          = new THREE.Mesh(
+                sphere_geometry,
+                new THREE.MeshLambertMaterial({color: 0x444444})
+            );
+
+        sphere.position.y = 0;
+        sphere.name       = 'Sphere';
 
         plane.receiveShadow  = true;
         sphere.receiveShadow = true;
@@ -31,7 +50,6 @@ define([
 
         scene.add(plane);
         scene.add(sphere);
-        scene.add(pg.mesh);
 
         camera.lookAt(scene.position);
 

@@ -1,0 +1,30 @@
+.rs-base {
+    position: absolute;
+    line-height: 1em;
+    left: 0;
+    top: 0;
+    padding: 5px;
+    font-size: 0.65rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 1px solid #cccccc;
+}
+
+.rs-counter-base {
+    position: relative;
+}
+
+.rs-counter-base canvas.rs-canvas {
+    margin-top: 1em;
+}
+
+.rs-counter-id {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.rs-counter-value {
+    position: absolute;
+    top: 0;
+    left: 50%;
+}

@@ -4,7 +4,7 @@ define(['three', 'loadingmanager'], function (THREE, loader) {
         rName,
         gfxFileName,
         textures     = {},
-        GFX          = ['sand.jpg', 'raindrop.png', 'testHex.png'],
+        GFX = ['sand.jpg', 'raindrop.png', 'testHex.png', 't.png'],
         image_loader = new THREE.ImageLoader(loader);
 
     function onLoad(rName, img) {
