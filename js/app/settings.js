@@ -31,6 +31,9 @@ define(['jquery', 'jquery.ui'], function ($) {
         );
         window.localStorage.setItem('settings', JSON.stringify(s));
         settings.onchange && settings.onchange(s);
+        for (var i in s) {
+            settings[s[i].name] = s[i].value;
+        }
     }).change();
 
     $('.settings').dialog({

@@ -1,6 +1,6 @@
 // This THREEx helper makes it easy to handle the fullscreen API
 // * it hides the prefix for each browser
-// * it hides the little discrepencies of the various vendor API
+// * it hides the little discrepencies of the various lib API
 // * at the time of this writing (nov 2011) it is available in 
 //   [firefox nightly](http://blog.pearce.org.nz/2011/11/firefoxs-html-full-screen-api-enabled.html),
 //   [webkit nightly](http://peter.sh/2011/01/javascript-full-screen-api-navigation-timing-and-repeating-css-gradients/) and

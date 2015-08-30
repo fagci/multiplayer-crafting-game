@@ -1,4 +1,4 @@
-define(['three', 'loadingmanager'], function (THREE, loader) {
+define(['three', 'loadingManager'], function (THREE, loader) {
 
     var i,
         rName,
@@ -19,7 +19,7 @@ define(['three', 'loadingmanager'], function (THREE, loader) {
         gfxFileName     = GFX[i];
         rName           = gfxFileName.split('.')[0];
         textures[rName] = new THREE.Texture();
-        image_loader.load("gfx/" + gfxFileName,
+        image_loader.load("resources/gfx/" + gfxFileName,
             onLoad.bind(this, rName),
             function (a, b, c) {
                 console.log('progress:', a, b, c);

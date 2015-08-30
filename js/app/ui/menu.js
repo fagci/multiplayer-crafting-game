@@ -1,5 +1,5 @@
-define(['jquery', 'sound', 'threex', 'sceneManager'],
-    function ($, sound_loader, THREEx, scene_manager) {
+define(['jquery', '../sound', 'threex', 'managers/sceneManager', 'controls/pointerLockControls'],
+    function ($, sound_loader, THREEx, scene_manager, controls) {
     console.log('Init menu...');
         var $menuItems = $('.menu-item');
 
@@ -13,6 +13,8 @@ define(['jquery', 'sound', 'threex', 'sceneManager'],
             case 'newGame':
                 console.log(THREEx);
                 THREEx.FullScreen.request();
+                window.document.body.requestPointerLock();
+                controls.enabled = true;
                 break;
             case 'playOnline':
                 require(['scenes/multiplayer'], function (s) {

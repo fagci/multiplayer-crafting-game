@@ -1,4 +1,4 @@
-define(['SPE', 'textureManager'], function(SPE, textureManager){
+define(['SPE', '../managers/textureManager'], function (SPE, textureManager) {
     "use strict";
     /** @global THREE.TextureLoader loader */
         console.info('Init particle group');

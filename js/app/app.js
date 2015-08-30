@@ -7,21 +7,22 @@ define(function (require) {
             menu            = require('menu'),
             settings        = require('settings'),
             stats           = require('fpsStats'),
-            //fps_controls  = require('fpsControls'),
-            loading_manager = require('loadingmanager'),
+            key_controls    = require('keyControls'),
+            loading_manager = require('loadingManager'),
             scene_manager   = require('sceneManager');
 
         var app = {
             clock: false,
             update: function (delta) {
                 scene_manager.updateCurrent(delta);
-                //fps_controls.update(delta);
+                if (key_controls.keyDown[key_controls.KeyEvent.DOM_VK_W]) {
+                    console.log('Forward!');
+                }
             },
 
             init: function () {
                 console.warn('Init');
                 settings.onchange      = app.onSettingsChange;
-                loading_manager.onload = app.initScene;
                 app.clock              = new THREE.Clock();
 
 
@@ -43,10 +44,13 @@ define(function (require) {
             },
 
             animate: function () {
-                requestAnimationFrame(app.animate);
+
+
                 app.update(app.clock.getDelta());
                 renderer.render(scene_manager.currentScene, camera);
+
                 stats('FPS').frame();
+                requestAnimationFrame(app.animate);
                 stats().update();
             }
         };

@@ -1,4 +1,4 @@
-define(['scene'], function (scene) {
+define(['../core/scene'], function (scene) {
         "use strict";
         var manager          = {};
         manager.currentScene = scene;
