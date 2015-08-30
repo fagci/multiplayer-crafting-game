@@ -8,7 +8,6 @@ define(['three', 'loadingManager'], function (THREE, loader) {
         image_loader = new THREE.ImageLoader(loader);
 
     function onLoad(rName, img) {
-        console.log('Loaded:', rName, img);
         textures[rName].image       = img;
         textures[rName].needsUpdate = true;
     }
@@ -22,7 +21,6 @@ define(['three', 'loadingManager'], function (THREE, loader) {
         image_loader.load("resources/gfx/" + gfxFileName,
             onLoad.bind(this, rName),
             function (a, b, c) {
-                console.log('progress:', a, b, c);
             },
             function (e) {
                 console.log('Error:', e);

@@ -4,15 +4,18 @@ define([
     'textureManager',
     'scene',
     'materials/lambert',
-    'perlin'
-], function (THREE, camera, textureManager, scene, lambert_material, perlin) {
+    'perlin',
+    'player',
+    'entity/player/human',
+    'conzole'
+], function (THREE, camera, textureManager, scene, lambert_material, perlin, player, human) {
     /**
      * Update scene objects
      * @param d
      */
     scene.update = function (d) {
         "use strict";
-
+        player.update(d);
     };
 
     /**
@@ -31,7 +34,7 @@ define([
             plane          = new THREE.Mesh(plane_geometry, lambert_material);
 
         plane.rotation.x = -Math.PI / 2;
-        plane.name         = 'Ground';
+        plane.name       = 'Ground';
 
         var height, level;
 
@@ -73,12 +76,16 @@ define([
         sphere.name       = 'Sphere';
 
         plane.receiveShadow  = true;
-        plane.castShadow  = true;
+        plane.castShadow = true;
         sphere.receiveShadow = true;
         sphere.castShadow    = true;
 
+        player.position.y = 2;
+
         scene.add(plane);
         scene.add(sphere);
+        scene.add(player);
+        scene.add(human);
 
         camera.lookAt(scene.position);
 

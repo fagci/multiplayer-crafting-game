@@ -9,22 +9,19 @@ define(function (require) {
             stats           = require('fpsStats'),
             key_controls    = require('keyControls'),
             loading_manager = require('loadingManager'),
+            network = require('net/network'),
             scene_manager   = require('sceneManager');
 
         var app = {
             clock: false,
             update: function (delta) {
                 scene_manager.updateCurrent(delta);
-                if (key_controls.keyDown[key_controls.KeyEvent.DOM_VK_W]) {
-                    console.log('Forward!');
-                }
             },
 
             init: function () {
                 console.warn('Init');
-                settings.onchange      = app.onSettingsChange;
-                app.clock              = new THREE.Clock();
-
+                settings.onchange = app.onSettingsChange;
+                app.clock         = new THREE.Clock();
 
                 require(['scenes/main'], function (s) {
                     "use strict";
@@ -44,8 +41,6 @@ define(function (require) {
             },
 
             animate: function () {
-
-
                 app.update(app.clock.getDelta());
                 renderer.render(scene_manager.currentScene, camera);
 

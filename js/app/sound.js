@@ -6,7 +6,7 @@ define(['jquery','Howler'], function($, Howler){
     for(i in SFX){
         if(!SFX.hasOwnProperty(i)) continue;
         sound = new Howl({
-            urls: ['sfx/' + SFX[i]],
+            urls: ['resources/sfx/' + SFX[i]],
             buffer: true,
             onload: function(){
                 console.info('Loaded sfx',this._src);

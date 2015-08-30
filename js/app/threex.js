@@ -1,6 +1,5 @@
-define(['threex_fullscreen'], function (FullScreen) {
+define(['threex_fullscreen', 'threex_keyboard_state'], function (THREEx) {
     "use strict";
-    var THREEx        = {};
-    THREEx.FullScreen = FullScreen;
+
     return THREEx;
 });
