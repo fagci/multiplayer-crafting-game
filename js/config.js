@@ -2,7 +2,9 @@ var require = {
     baseUrl: 'js/app',
     shim: {
         // --- Use shim to mix together all THREE.js subcomponents
-        'three': {exports: 'THREE'},
+        'three_core': {exports: 'THREE'},
+        'three_obj_loader': {exports: 'THREE', deps: ['three_core']},
+        'three_json_loader': {exports: 'THREE', deps: ['three_core']},
         'threex_fullscreen': {exports: 'THREEx'},
         'threex_keyboard_state': {exports: 'THREEx'},
         'perlin': {exports: 'noise'},
@@ -23,7 +25,9 @@ var require = {
 
     paths: {
         // THREE components
-        three: '../lib/three',
+        three_core: '../lib/three',
+        three_obj_loader: '../lib/utils/OBJLoader',
+        three_json_loader: '../lib/utils/JSONLoader',
         threex_fullscreen: '../lib/utils/THREEx.FullScreen',
 
         perlin: '../lib/algo/perlin',
@@ -66,8 +70,9 @@ var require = {
             'keyControls': 'controls/keyControls',
             'pointerLockControls': 'controls/pointerLockControls',
             'loadingManager': 'managers/loadingManager',
+            'objectManager': 'managers/objectManager',
             'sceneManager': 'managers/sceneManager',
-            'textureManager': 'managers/textureManager',
+            'textureManager': 'managers/textureManager'
         }
     }
 };

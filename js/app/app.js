@@ -9,6 +9,7 @@ define(function (require) {
             stats           = require('fpsStats'),
             key_controls    = require('keyControls'),
             loading_manager = require('loadingManager'),
+            object_manager = require('objectManager'),
             network = require('net/network'),
             scene_manager   = require('sceneManager');
 

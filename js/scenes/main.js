@@ -2,13 +2,14 @@ define([
     'three',
     'camera',
     'textureManager',
+    'objectManager',
     'scene',
     'materials/lambert',
     'perlin',
     'player',
     'entity/player/human',
     'conzole'
-], function (THREE, camera, textureManager, scene, lambert_material, perlin, player, human) {
+], function (THREE, camera, textureManager, objectManager, scene, lambert_material, perlin, player, human) {
     /**
      * Update scene objects
      * @param d
@@ -35,60 +36,55 @@ define([
 
         plane.rotation.x = -Math.PI / 2;
         plane.name       = 'Ground';
+        /*
+         var height, level;
 
-        var height, level;
+         perlin.seed(3333);
 
-        perlin.seed(3333);
+         for (var i = 0, l = plane_geometry.vertices.length; i < l; i++) {
+         var x = i % pws,
+         y = Math.floor(i / phs);
 
-        for (var i = 0, l = plane_geometry.vertices.length; i < l; i++) {
-            var x = i % pws,
-                y = Math.floor(i / phs);
+         height = 0;
+         level  = 8;
 
-            height = 0;
-            level  = 8;
+         height += (perlin.simplex2(x / level, y / level) / 2 + 0.5) * 0.125;
+         level *= 3;
+         height += (perlin.simplex2(x / level, y / level) / 2 + 0.5) * 0.25;
+         level *= 2;
+         height += (perlin.simplex2(x / level, y / level) / 2 + 0.5) * 0.5;
+         level *= 2;
+         height += (perlin.simplex2(x / level, y / level) / 2 + 0.5);
+         height /= 1 + 0.5 + 0.25 + 0.125;
 
-            height += (perlin.simplex2(x / level, y / level) / 2 + 0.5) * 0.125;
-            level *= 3;
-            height += (perlin.simplex2(x / level, y / level) / 2 + 0.5) * 0.25;
-            level *= 2;
-            height += (perlin.simplex2(x / level, y / level) / 2 + 0.5) * 0.5;
-            level *= 2;
-            height += (perlin.simplex2(x / level, y / level) / 2 + 0.5);
-            height /= 1 + 0.5 + 0.25 + 0.125;
+         plane_geometry.vertices[i].z = (height - 0.5) * 2;
+         }
 
-            plane_geometry.vertices[i].z = (height - 0.5) * 2;
-
-            //plane_geometry.vertices[i].z = height;
-        }
-
-        plane_geometry.verticesNeedUpdate = true;
-        plane_geometry.computeFaceNormals();
-        plane_geometry.computeVertexNormals();
-        plane_geometry.normalsNeedUpdate  = true;
-
-        var sphere_geometry = new THREE.SphereGeometry(0.25, 32, 32),
-            sphere          = new THREE.Mesh(
-                sphere_geometry,
-                new THREE.MeshLambertMaterial({color: 0x444444})
-            );
-
-        sphere.position.y = 0.5;
-        sphere.name       = 'Sphere';
+         plane_geometry.verticesNeedUpdate = true;
+         plane_geometry.computeFaceNormals();
+         plane_geometry.computeVertexNormals();
+         plane_geometry.normalsNeedUpdate  = true;
+         */
 
         plane.receiveShadow  = true;
-        plane.castShadow = true;
-        sphere.receiveShadow = true;
-        sphere.castShadow    = true;
+        plane.castShadow              = true;
 
         player.position.y = 0;
+        player.position.z             = 4;
+        player.children[0].rotation.x = -Math.PI / 18;
 
         var grid = new THREE.GridHelper(10, 1);
 
+        var bbox = new THREE.BoundingBoxHelper(human, 0xff0000);
+        bbox.update();
+
+
         scene.add(plane);
-        scene.add(sphere);
         scene.add(player);
+
         scene.add(human);
         scene.add(grid);
+        scene.add(bbox);
 
         camera.lookAt(scene.position);
 
