@@ -19,7 +19,6 @@ define(['jquery', '../sound', 'threex', 'managers/sceneManager', 'controls/point
                 document.mozFullScreen ||
                 document.webkitIsFullScreen ||
                 document.msFullscreenElement;
-            console.log('FS:', fs);
             if (!fs) {
                 document.exitPointerLock();
                 controls.enabled = false;

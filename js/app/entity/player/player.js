@@ -11,6 +11,7 @@ define(function (require) {
     var player   = pointerLock.getObject();
     player.name  = 'Player';
     player.netId = Math.random();
+    player.children[0].position.y = 1.5; // Head
 
     var v = 1;
 

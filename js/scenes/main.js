@@ -80,12 +80,15 @@ define([
         sphere.receiveShadow = true;
         sphere.castShadow    = true;
 
-        player.position.y = 2;
+        player.position.y = 0;
+
+        var grid = new THREE.GridHelper(10, 1);
 
         scene.add(plane);
         scene.add(sphere);
         scene.add(player);
         scene.add(human);
+        scene.add(grid);
 
         camera.lookAt(scene.position);
 
