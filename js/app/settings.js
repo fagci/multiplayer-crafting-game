@@ -1,5 +1,4 @@
-define(['jquery', 'jquery.ui'], function ($) {
-    console.info('Init settings...');
+define(['jquery', 'jquery.ui'], function ($) { //TODO: разделить на файл настроек и ui/settings_dialog
     var $settingsForm = $('.settings-form'),
         settings      = {};
 
@@ -20,7 +19,6 @@ define(['jquery', 'jquery.ui'], function ($) {
         $input.val(item.value);
     }
 
-    /** @prop self.onchange **/
     $settingsForm.on('change', function () {
         var s = $settingsForm.serializeArray();
         s     = s.concat(

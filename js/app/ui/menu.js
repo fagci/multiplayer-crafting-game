@@ -1,6 +1,5 @@
-define(['jquery', '../sound', 'threex', 'managers/sceneManager', 'controls/pointerLockControls'],
+define(['jquery', 'sound', 'threex', 'sceneManager', 'pointerLockControls'],
     function ($, sound_loader, THREEx, scene_manager, controls) {
-        console.log('Init menu...');
         var $menuItems = $('.menu-item'),
             document   = window.document,
             element    = document.body;
@@ -19,6 +18,7 @@ define(['jquery', '../sound', 'threex', 'managers/sceneManager', 'controls/point
                 document.mozFullScreen ||
                 document.webkitIsFullScreen ||
                 document.msFullscreenElement;
+
             if (!fs) {
                 document.exitPointerLock();
                 controls.enabled = false;

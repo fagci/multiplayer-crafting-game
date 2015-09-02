@@ -3,11 +3,10 @@ define([
     'camera',
     'textureManager',
     'scene',
-    'materials/lambert',
+    'materials/lambert'
 ], function (THREE, camera, textureManager, scene, lambert_material) {
 
     scene.init = function () {
-        console.info('Init MP scene');
         lambert_material.map = textureManager.testHex;
 
         var plane_geometry = new THREE.PlaneBufferGeometry(1200, 1200, 1, 1),

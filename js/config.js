@@ -1,26 +1,28 @@
 var require = {
     baseUrl: 'js/app',
     shim: {
-        // --- Use shim to mix together all THREE.js subcomponents
+        // THREE components
         'three_core': {exports: 'THREE'},
         'three_obj_loader': {exports: 'THREE', deps: ['three_core']},
         'three_json_loader': {exports: 'THREE', deps: ['three_core']},
-        'threex_fullscreen': {exports: 'THREEx'},
-        'threex_keyboard_state': {exports: 'THREEx'},
-        'perlin': {exports: 'noise'},
         'fps_controls': {exports: 'THREE', deps: ['three']},
         'pointer_lock_controls': {deps: ['three']},
-        'jquery': {exports: 'jQuery'},
-        'jquery.ui': {
-            exports: 'jQuery.fn.ui',
-            deps: ['jquery']
-        },
+        'SPE': {exports: 'SPE', deps: ['three']},
+
+        // THREE game eextensions
+        'threex_fullscreen': {exports: 'THREEx'},
+        'threex_keyboard_state': {exports: 'THREEx'},
+
+        // jQuery components
+        //'jquery': {exports: 'jQuery'},
+        'jquery.ui': {exports: '$', deps: ['jquery']},
+
+        'perlin': {exports: 'noise'},
         'stats_core': {exports: 'rStats'},
         'conzole': {exports: 'conzole'},
         'watch': {exports: 'WatchJS'},
         'Howler': {exports: 'Howler'},
-        'socket': {exports: 'io'},
-        'SPE': {exports: 'SPE', deps: ['three']}
+        'socket': {exports: 'io'}
     },
 
     paths: {

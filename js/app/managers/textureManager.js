@@ -12,7 +12,6 @@ define(['three', 'loadingManager'], function (THREE, loader) {
         textures[rName].needsUpdate = true;
     }
 
-    console.info('Load textures');
     for (i in GFX) {
         if (!GFX.hasOwnProperty(i)) continue;
         gfxFileName     = GFX[i];

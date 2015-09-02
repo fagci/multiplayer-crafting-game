@@ -1,15 +1,14 @@
-define([
-    'three',
-    'camera',
-    'textureManager',
-    'objectManager',
-    'scene',
-    'materials/lambert',
-    'perlin',
-    'player',
-    'entity/player/human',
-    'conzole'
-], function (THREE, camera, textureManager, objectManager, scene, lambert_material, perlin, player, human) {
+define(function (require) {
+    var THREE            = require('three'),
+        camera           = require('camera'),
+        textureManager   = require('textureManager'),
+        objectManager    = require('objectManager'),
+        scene            = require('scene'),// TODO: переделать для использования scene manager'ом
+        lambert_material = require('materials/lambert'),
+        perlin           = require('perlin'),
+        player           = require('player'),
+        human            = require('entity/player/human');
+
     /**
      * Update scene objects
      * @param d
@@ -19,11 +18,7 @@ define([
         player.update(d);
     };
 
-    /**
-     * Init scene
-     */
     scene.init = function () {
-        console.info('Init scene');
         textureManager.t.wrapS = THREE.RepeatWrapping;
         textureManager.t.wrapT = THREE.RepeatWrapping;
         textureManager.t.repeat.set(10, 10);
@@ -32,7 +27,9 @@ define([
         var pws = 100, phs = 100;
 
         var plane_geometry = new THREE.PlaneGeometry(10, 10, pws, phs),
-            plane          = new THREE.Mesh(plane_geometry, lambert_material);
+            plane = new THREE.Mesh(plane_geometry, lambert_material),
+            grid  = new THREE.GridHelper(10, 1),
+            bbox  = new THREE.BoundingBoxHelper(human, 0xff0000);
 
         plane.rotation.x = -Math.PI / 2;
         plane.name       = 'Ground';
@@ -66,18 +63,14 @@ define([
          plane_geometry.normalsNeedUpdate  = true;
          */
 
-        plane.receiveShadow  = true;
-        plane.castShadow              = true;
+        plane.receiveShadow = true;
+        plane.castShadow    = true;
 
         player.position.y = 0;
         player.position.z             = 4;
         player.children[0].rotation.x = -Math.PI / 18;
 
-        var grid = new THREE.GridHelper(10, 1);
-
-        var bbox = new THREE.BoundingBoxHelper(human, 0xff0000);
         bbox.update();
-
 
         scene.add(plane);
         scene.add(player);

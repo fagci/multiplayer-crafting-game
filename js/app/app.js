@@ -10,7 +10,7 @@ define(function (require) {
             key_controls    = require('keyControls'),
             loading_manager = require('loadingManager'),
             object_manager = require('objectManager'),
-            network = require('net/network'),
+            network        = require('net/network'),
             scene_manager   = require('sceneManager');
 
         var app = {
@@ -20,7 +20,6 @@ define(function (require) {
             },
 
             init: function () {
-                console.warn('Init');
                 settings.onchange = app.onSettingsChange;
                 app.clock         = new THREE.Clock();
 
@@ -32,7 +31,6 @@ define(function (require) {
             },
 
             onSettingsChange: function (s) {
-                console.warn('Settings change', s);
                 var i, item;
                 for (i in s) {
                     if (!s.hasOwnProperty(i)) continue;

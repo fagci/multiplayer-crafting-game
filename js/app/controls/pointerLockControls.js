@@ -1,8 +1,8 @@
-define(['../objects/camera', 'pointer_lock_controls'],
-    function (camera, PointerLockControls, scene) {
+define(['camera', 'pointer_lock_controls'],
+    function (camera, PointerLockControls) {
         "use strict";
-        var document      = window.document;
-        var controls      = new THREE.PointerLockControls(camera, document);
+        var document = window.document;
+        var controls = new THREE.PointerLockControls(camera, document);
         return controls;
     }
 );

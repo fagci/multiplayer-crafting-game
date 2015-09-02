@@ -1,8 +1,6 @@
 define(function (require) {
     "use strict";
-    var THREE       = require('three'),
-        pointerLock = require('pointerLockControls'),
-        conzole     = require('conzole'),
+    var pointerLock = require('pointerLockControls'),
         camera      = require('camera'),
         WatchJS     = require('watch'),
         socket      = require('net/network');

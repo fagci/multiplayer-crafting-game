@@ -1,5 +1,4 @@
-define(['three', 'pointer_lock_controls'], function (THREE, pointer_lock_controls) {
-    console.info('Init camera...');
+define(['three'], function (THREE) {
     var camera = new THREE.PerspectiveCamera(45, 1, 0.1, 1000);
 
     function updateSize() {

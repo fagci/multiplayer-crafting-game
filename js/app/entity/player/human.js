@@ -2,20 +2,18 @@ define(['three', 'net/network', 'player', 'objectManager'],
     function (THREE, socket, player, objectManager) {
         "use strict";
 
-        var human_head = objectManager.scoutHead,
+        var playerData,
+            human_head = objectManager.scoutHead,
             human_body = objectManager.scout;
 
         human_body.position.y = 0;
         human_head.position.y = 1.8;
         human_body.add(human_head);
 
-        var playerData;
-
         socket.on('message', function (msg) {
             /** @prop id */
-            playerData            = msg.text;
+            playerData = msg.text;
             if (!playerData || playerData.id == player.netId) return;
-            console.log('RECV: ', playerData.id);
             human_body.position.x = playerData.pos.x;
             human_body.position.y = playerData.pos.y;
             human_body.position.z = playerData.pos.z;
