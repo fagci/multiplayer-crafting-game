@@ -1,33 +1,25 @@
 define(function (require) {
         console.info('[Entrypoint]');
-        var THREE           = require('three'),
-            camera          = require('camera'),
-            light           = require('light'),
-            renderer        = require('renderer'),
-            menu            = require('menu'),
+        var
+        // init UI first
             settings        = require('settings'),
-            stats           = require('fpsStats'),
-            key_controls    = require('keyControls'),
+        menu = require('menu'),
+
+        // then we can load resources
             loading_manager = require('loadingManager'),
-            object_manager = require('objectManager'),
-            network        = require('net/network'),
+
+        // and prepare scene manager
             scene_manager   = require('sceneManager');
 
         var app = {
-            clock: false,
-            update: function (delta) {
-                scene_manager.updateCurrent(delta);
-            },
-
             init: function () {
                 settings.onchange = app.onSettingsChange;
-                app.clock         = new THREE.Clock();
 
                 require(['scenes/main'], function (s) {
                     "use strict";
                     scene_manager.setCurrent(s);
                 });
-                app.animate();
+                require('core/animator');
             },
 
             onSettingsChange: function (s) {
@@ -37,15 +29,6 @@ define(function (require) {
                     item                = s[i];
                     settings[item.name] = item.value;
                 }
-            },
-
-            animate: function () {
-                app.update(app.clock.getDelta());
-                renderer.render(scene_manager.currentScene, camera);
-
-                stats('FPS').frame();
-                requestAnimationFrame(app.animate);
-                stats().update();
             }
         };
         return app;

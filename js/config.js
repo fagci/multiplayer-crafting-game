@@ -69,6 +69,7 @@ var require = {
             'scene': 'core/scene',
             'menu': 'ui/menu',
             'fpsStats': 'ui/fpsStats',
+            'network': 'net/network',
             'keyControls': 'controls/keyControls',
             'pointerLockControls': 'controls/pointerLockControls',
             'loadingManager': 'managers/loadingManager',

@@ -1,9 +1,9 @@
 define(function (require) {
     "use strict";
-    var pointerLock = require('pointerLockControls'),
-        camera      = require('camera'),
+    var camera      = require('camera'),
         WatchJS     = require('watch'),
-        socket      = require('net/network');
+        socket      = require('network'),
+        pointerLock = require('pointerLockControls');
 
     /** @instance THREE.Mesh **/
     var player   = pointerLock.getObject();

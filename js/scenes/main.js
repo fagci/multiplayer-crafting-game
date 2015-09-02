@@ -1,12 +1,14 @@
 define(function (require) {
     var THREE            = require('three'),
         camera           = require('camera'),
+        light    = require('light'),
         textureManager   = require('textureManager'),
         objectManager    = require('objectManager'),
         scene            = require('scene'),// TODO: переделать для использования scene manager'ом
         lambert_material = require('materials/lambert'),
         perlin           = require('perlin'),
         player           = require('player'),
+        keyboard = require('keyControls'),
         human            = require('entity/player/human');
 
     /**
