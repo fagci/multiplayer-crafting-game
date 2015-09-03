@@ -20,17 +20,26 @@ THREE.PointerLockControls = function (camera, document) {
     var onMouseMove = function (event) {
         if (scope.enabled === false) return;
 
-        var movementX = event.movementX || event.mozMovementX || event.webkitMovementX || 0;
-        var movementY = event.movementY || event.mozMovementY || event.webkitMovementY || 0;
+        var mx, my;
 
-        yawObject.rotation.y -= movementX * 0.002;
-        pitchObject.rotation.x -= movementY * 0.002;
+        if (event.changedTouches) {
+            mx = event.changedTouches[0].pageX;
+            my = event.changedTouches[0].pageY;
+        } else {
+            mx = event.movementX || event.mozMovementX || event.webkitMovementX || 0;
+            my = event.movementY || event.mozMovementY || event.webkitMovementY || 0;
+        }
+
+
+        yawObject.rotation.y -= mx * 0.002;
+        pitchObject.rotation.x -= my * 0.002;
 
         pitchObject.rotation.x = Math.max(-PI_2, Math.min(PI_2, pitchObject.rotation.x));
 
     };
 
     document.addEventListener('mousemove', onMouseMove, false);
+    document.addEventListener('touchmove', onMouseMove);
 
     this.enabled = false;
 

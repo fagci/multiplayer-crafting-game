@@ -7,9 +7,12 @@ define(['three', 'loadingManager'],
         loader.load(
             'resources/scout.json',
             function (geometry, materials) {
+                geometry.mergeVertices();
+                geometry.computeFaceNormals();
+                geometry.computeVertexNormals();
 
                 //var material = new THREE.MeshFaceMaterial(materials);
-                var material         = new THREE.MeshLambertMaterial();
+                var material = new THREE.MeshLambertMaterial({color: 0x666666});
                 var player           = new THREE.Mesh(geometry, material);
 
                 player.scale.set(0.5, 0.5, 0.5);

@@ -10,6 +10,7 @@ define(['three', 'loadingManager'], function (THREE, loader) {
     function onLoad(rName, img) {
         textures[rName].image       = img;
         textures[rName].needsUpdate = true;
+        textures[rName].anisotropy = 16;
     }
 
     for (i in GFX) {

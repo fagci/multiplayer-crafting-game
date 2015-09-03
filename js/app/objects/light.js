@@ -18,7 +18,7 @@ define(['three', '../core/scene'], function (THREE, scene) {
     dirLight.shadowCameraRight  = d;
     dirLight.shadowCameraLeft   = -d;
     dirLight.shadowCameraBottom = -d;
-    dirLight.shadowCameraFar = 3500;
+    dirLight.shadowCameraFar = 1000;
     dirLight.shadowBias      = -0.0001;
     dirLight.shadowDarkness  = 0.35;
 

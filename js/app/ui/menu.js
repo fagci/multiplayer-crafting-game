@@ -1,5 +1,5 @@
-define(['jquery', 'sound', 'threex', 'sceneManager', 'pointerLockControls'],
-    function ($, sound_loader, THREEx, scene_manager, controls) {
+define(['jquery', 'sound', 'threex', 'sceneManager', 'pointerLockControls', 'ui/options', 'jquery.ui'],
+    function ($, sound_loader, THREEx, scene_manager, controls, options) {
         var $menuItems = $('.menu-item'),
             document   = window.document,
             element    = document.body;

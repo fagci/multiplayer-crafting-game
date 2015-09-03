@@ -2,7 +2,7 @@ define(function (require) {
     "use strict";
     var camera      = require('camera'),
         WatchJS     = require('watch'),
-        socket      = require('network'),
+        //socket      = require('network'),
         pointerLock = require('pointerLockControls');
 
     /** @instance THREE.Mesh **/
@@ -32,7 +32,7 @@ define(function (require) {
     }
 
     function sendPlayerData() {
-        socket.emit('message', getPlayerInfo(this));
+        //socket.emit('message', getPlayerInfo(this));
     }
 
     WatchJS.watch(player.rotation, sendPlayerData.bind(player));

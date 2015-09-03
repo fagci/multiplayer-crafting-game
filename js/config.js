@@ -14,8 +14,9 @@ var require = {
         'threex_keyboard_state': {exports: 'THREEx'},
 
         // jQuery components
-        //'jquery': {exports: 'jQuery'},
-        'jquery.ui': {exports: '$', deps: ['jquery']},
+        'jquery': {exports: 'jQuery'},
+        'jquery.ui': {exports: 'jQuery.fn.ui', deps: ['jquery']},
+        'jquery.dform': {exports: 'jQuery.fn.dform', deps: ['jquery']},
 
         'perlin': {exports: 'noise'},
         'stats_core': {exports: 'rStats'},
@@ -54,6 +55,7 @@ var require = {
         // jQuery components
         jquery: '../lib/dom/jquery-2.1.4.min',
         'jquery.ui': '../lib/dom/jquery-ui.min',
+        'jquery.dform': '../lib/dom/jquery.dform-1.1.0.min',
 
         scenes: '../scenes',
         meshes: '../meshes',

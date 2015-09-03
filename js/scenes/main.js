@@ -29,9 +29,10 @@ define(function (require) {
         var pws = 100, phs = 100;
 
         var plane_geometry = new THREE.PlaneGeometry(10, 10, pws, phs),
-            plane = new THREE.Mesh(plane_geometry, lambert_material),
-            grid  = new THREE.GridHelper(10, 1),
-            bbox  = new THREE.BoundingBoxHelper(human, 0xff0000);
+            plane       = new THREE.Mesh(plane_geometry, lambert_material),
+            grid        = new THREE.GridHelper(10, 1),
+            bbox        = new THREE.BoundingBoxHelper(human, 0xff0000),
+            axis_helper = new THREE.AxisHelper(5);
 
         plane.rotation.x = -Math.PI / 2;
         plane.name       = 'Ground';
@@ -80,6 +81,7 @@ define(function (require) {
         scene.add(human);
         scene.add(grid);
         scene.add(bbox);
+        scene.add(axis_helper);
 
         camera.lookAt(scene.position);
 
