@@ -1,89 +1,77 @@
-define(['renderer', 'settings', 'jquery', 'jquery.ui', 'jquery.dform'],
-    function (renderer, settings, $) {
-        var $settingsPanel     = $('.settings'),
-            anisotropyLevels   = {},
-            i, it,
-            maxAnisotropyLevel = renderer.getMaxAnisotropy(),
-            shaderDetails      = {
+define(['renderer', 'settings', 'dot!settings_t', 'jquery', 'jquery.ui', 'lodash'],
+    function (renderer, settings, template, $) {
+        var $settingsPanel           = $('.settings'),
+            shaderDetails            = {
                 lowp: 'Low',
-                midp: 'Mid',
+                mediump: 'Mid',
                 highp: 'High'
-            };
-
-        for (i = 1; i <= maxAnisotropyLevel; i *= 2) {
-            if (settings.anisotropy_level == i) {
-                anisotropyLevels[i] = {
-                    value: i,
-                    html: 'x' + i,
-                    selected: true
-                };
-            } else {
-                anisotropyLevels[i] = 'x' + i;
-            }
-        }
-
-        for (i in shaderDetails) {
-            if (!shaderDetails.hasOwnProperty(i)) continue;
-            it = shaderDetails[i];
-            console.log(settings.shader_detail != i);
-            if (settings.shader_detail != i) continue;
-            it = {
-                value: i,
-                html: it,
-                selected: true
-            };
-        }
-
-
-        console.log(anisotropyLevels);
-        $settingsPanel.dform({
-            action: "",
-            method: "get",
-            dialog: {
-                autoOpen: false,
-                height: 200,
-                width: 350,
-                modal: true,
-                title: 'Settings',
-                html: [
-                    {
-                        "type": "tabs",
-                        "entries": [
-                            {
-                                "caption": "Graphics",
-                                "id": "first",
-                                "html": [
-                                    {
-                                        "name": "shader_detail",
-                                        "caption": "Shader detail",
-                                        "type": "select",
-                                        "options": shaderDetails
-                                    },
-                                    {
-                                        "name": "anisotropy_level",
-                                        "caption": "Anisotropy level",
-                                        "type": "select",
-                                        "options": anisotropyLevels
-                                    },
-                                    {
-                                        "type": "submit",
-                                        "value": "Apply"
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                ]
             },
+            shadows                  = {
+                0: 'Off',
+                1: 'Simple',
+                2: 'PCF',
+                3: 'PCF Soft'
+            },
+            antialiasing             = {
+                0: 'Off',
+                1: 'On'
+            },
+            maxAnisotropyLevel       = renderer.getMaxAnisotropy(),
+            anisotropyLevels         = _.range(0, Math.log2(maxAnisotropyLevel * 2)),
+            anisotropyOptionsArray   = anisotropyLevels.map(function (a) {
+                var i = 1 << a;
+                return {
+                    selected: i == settings.anisotropy_level,
+                    text: 'x ' + i,
+                    value: i
+                };
+            }),
+            shaderOptionsArray       = _.map(shaderDetails, function (v, k) {
+                return {
+                    selected: k == settings.shader_detail,
+                    text: v,
+                    value: k
+                }
+            }),
+            shadowsOptionsArray      = _.map(shadows, function (v, k) {
+                return {
+                    selected: k == settings.shadows,
+                    text: v,
+                    value: k
+                }
+            }),
+            antialiasingOptionsArray = _.map(antialiasing, function (v, k) {
+                return {
+                    selected: k == settings.antialiasing,
+                    text: v,
+                    value: k
+                }
+            });
+        console.log(shaderOptionsArray);
+        var form                     = template({
+            anisotropy: anisotropyOptionsArray,
+            shader_detail: shaderOptionsArray,
+            shadows: shadowsOptionsArray,
+            antialiasing: antialiasingOptionsArray
+        }), $form                    = $(form);
 
-        }).find('form').on('submit', function () {
-            "use strict";
-            var i, it, d = $(this).serializeArray();
-            for (i in d) {
-                if (!d.hasOwnProperty(i)) continue;
-                it                = d[i];
-                settings[it.name] = it.value;
+        $form.find('#tabs').tabs();
+        $form.dialog({
+            title: 'Settings',
+            resizable: false,
+            autoOpen: false,
+            create: function () {
+                $(this).closest(".ui-dialog")
+                    .find(".ui-button:first") // the first button
+                    .addClass("fa fa-close");
             }
-            settings.save();
         });
-    });
+        $form.submit(function (e) {
+            "use strict";
+            _.map($(this).serializeArray(), function (v) {
+                settings[v.name] = v.value;
+                settings.save();
+            })
+        });
+    }
+);

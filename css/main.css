@@ -2,7 +2,6 @@
   font-family: Roboto;
   src: url(../fonts/Roboto-Regular.ttf);
 }
-
 @font-face {
   font-family: RobotoLight;
   src: url(../fonts/Roboto-Light.ttf);
@@ -12,13 +11,14 @@ body {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  color: #00ccff;
+  color: #8dcdff;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
   background-color: #000000;
   font-family: Roboto;
+  cursor: default;
 }
 * {
   -webkit-box-sizing: border-box;
@@ -26,5 +26,5 @@ body {
   box-sizing: border-box;
 }
 .panel {
-  background: rgba(0, 0, 0, 0.5);
+  background: #102637;
 }

@@ -1,0 +1,55 @@
+<form class="settings panel" action="." method="get">
+<div id="tabs">
+  <ul>
+    <li><a href="#tabs-1">Graphics</a></li>
+    <li><a href="#tabs-2">Input</a></li>
+    <li><a href="#tabs-3">Network</a></li>
+  </ul>
+  <div id="tabs-1">
+
+    <div class="control-group">
+      <label>Anisotropy</label>
+      <select name="anisotropy_level">
+      {{~ it.anisotropy :v}}
+          <option value="{{=v.value}}" {{? v.selected}}selected{{?}}>{{=v.text}}</option>
+      {{~}}
+      </select>
+    </div>
+
+    <div class="control-group">
+      <label>Shader detail</label>
+      <select name="shader_detail">
+      {{~ it.shader_detail :v}}
+          <option value="{{=v.value}}" {{? v.selected}}selected{{?}}>{{=v.text}}</option>
+      {{~}}
+      </select>
+    </div>
+
+    <div class="control-group">
+      <label>Shadows</label>
+      <select name="shadows">
+      {{~ it.shadows :v}}
+          <option value="{{=v.value}}" {{? v.selected}}selected{{?}}>{{=v.text}}</option>
+      {{~}}
+      </select>
+    </div>
+
+    <div class="control-group">
+      <label>Antialiasing</label>
+      <select name="antialiasing">
+      {{~ it.antialiasing :v}}
+          <option value="{{=v.value}}" {{? v.selected}}selected{{?}}>{{=v.text}}</option>
+      {{~}}
+      </select>
+    </div>
+
+  </div>
+  <div id="tabs-2">
+  </div>
+  <div id="tabs-3">
+  </div>
+</div>
+<div class="form-actions">
+  <input type="submit" value="Apply" class="apply" />
+</div>
+</form>

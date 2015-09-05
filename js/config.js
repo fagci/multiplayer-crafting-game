@@ -16,7 +16,8 @@ var require = {
         // jQuery components
         'jquery': {exports: 'jQuery'},
         'jquery.ui': {exports: 'jQuery.fn.ui', deps: ['jquery']},
-        'jquery.dform': {exports: 'jQuery.fn.dform', deps: ['jquery']},
+
+        'dot': {exports: 'doT'},
 
         'perlin': {exports: 'noise'},
         'stats_core': {exports: 'rStats'},
@@ -32,6 +33,12 @@ var require = {
         three_obj_loader: '../lib/utils/OBJLoader',
         three_json_loader: '../lib/utils/JSONLoader',
         threex_fullscreen: '../lib/utils/THREEx.FullScreen',
+
+        lodash: '../lib/lodash.min',
+
+        doTCompiler: '../lib/doT.min',
+        dot: '../lib/requirejs/doT',
+        text: '../lib/requirejs/text',
 
         perlin: '../lib/algo/perlin',
 
@@ -55,11 +62,12 @@ var require = {
         // jQuery components
         jquery: '../lib/dom/jquery-2.1.4.min',
         'jquery.ui': '../lib/dom/jquery-ui.min',
-        'jquery.dform': '../lib/dom/jquery.dform-1.1.0.min',
 
         scenes: '../scenes',
         meshes: '../meshes',
-        materials: '../materials'
+        materials: '../materials',
+
+        'settings_t': '../../views/settings'
     },
 
     map: {
@@ -78,6 +86,23 @@ var require = {
             'objectManager': 'managers/objectManager',
             'sceneManager': 'managers/sceneManager',
             'textureManager': 'managers/textureManager'
+        }
+    },
+
+    doT: {
+        ext: '.dot', // extension of the templates, defaults to .dot
+        templateSettings: {
+            evaluate: /\{\{([\s\S]+?)\}\}/g,
+            interpolate: /\{\{=([\s\S]+?)\}\}/g,
+            encode: /\{\{!([\s\S]+?)\}\}/g,
+            use: /\{\{#([\s\S]+?)\}\}/g,
+            define: /\{\{##\s*([\w\.$]+)\s*(\:|=)([\s\S]+?)#\}\}/g,
+            conditional: /\{\{\?(\?)?\s*([\s\S]*?)\s*\}\}/g,
+            iterate: /\{\{~\s*(?:\}\}|([\s\S]+?)\s*\:\s*([\w$]+)\s*(?:\:\s*([\w$]+))?\s*\}\})/g,
+            varname: 'it',
+            strip: true,
+            append: true,
+            selfcontained: false
         }
     }
 };

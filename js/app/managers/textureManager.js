@@ -1,4 +1,4 @@
-define(['three', 'loadingManager'], function (THREE, loader) {
+define(['three', 'loadingManager', 'settings'], function (THREE, loader, settings) {
 
     var i,
         rName,
@@ -10,7 +10,7 @@ define(['three', 'loadingManager'], function (THREE, loader) {
     function onLoad(rName, img) {
         textures[rName].image       = img;
         textures[rName].needsUpdate = true;
-        textures[rName].anisotropy = 16;
+        textures[rName].anisotropy = settings.anisotropy_level;
     }
 
     for (i in GFX) {

@@ -5,6 +5,8 @@ define([], function () {
     return {
         shader_detail: s.shader_detail || 'lowp',
         anisotropy_level: s.anisotropy_level || 1,
+        shadows: s.shadows || 0,
+        antialiasing: s.antialiasing || 0,
 
         save: function () {
             "use strict";

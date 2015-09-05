@@ -1,11 +1,16 @@
 define(['three', '../settings'], function (THREE, settings) {
     var renderer = new THREE.WebGLRenderer({
-        antialias: false
+        antialias: settings.antialiasing == 1,
+        precision: settings.shader_detail
     });
 
-    renderer.shadowMapEnabled = true;
-    renderer.shadowMapType    = THREE.PCFSoftShadowMap;
-
+    renderer.shadowMapEnabled = settings.shadows != 0;
+    renderer.shadowMapType    = {
+        1: THREE.BasicShadowMap,
+        2: THREE.PCFShadowMap,
+        3: THREE.PCFSoftShadowMap
+    }[settings.shadows];
+    console.log(renderer.shadowMapType);
     function updateSize() {
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.setPixelRatio(window.devicePixelRatio || 1);
