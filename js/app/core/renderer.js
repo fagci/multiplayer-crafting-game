@@ -11,6 +11,8 @@ define(['three', '../settings'], function (THREE, settings) {
         3: THREE.PCFSoftShadowMap
     }[settings.shadows];
 
+    renderer.autoClear = false;
+
 
     console.log(renderer.shadowMapEnabled);
     function updateSize() {

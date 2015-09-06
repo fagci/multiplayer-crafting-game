@@ -74,6 +74,7 @@ var require = {
         '*': {
             'player': 'entity/player/player',
             'camera': 'objects/camera',
+            'cameraOrtho': 'objects/cameraOrtho',
             'light': 'objects/light',
             'renderer': 'core/renderer',
             'scene': 'core/scene',

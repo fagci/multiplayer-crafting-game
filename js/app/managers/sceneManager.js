@@ -1,7 +1,8 @@
-define(['../core/scene'], function (scene) {
+define(['../core/scene', '../scenes/hud'], function (scene, hud) {
         "use strict";
         var manager          = {};
         manager.currentScene = scene;
+        manager.hudScene = hud;
 
         manager.clearCurrent = function () {
             var i, ch,
@@ -27,9 +28,11 @@ define(['../core/scene'], function (scene) {
             manager.clearCurrent();
             manager.currentScene = scene;
             manager.currentScene.init();
+            manager.hudScene.init();
         };
 
         manager.updateCurrent = function (d) {
+            manager.hudScene.update(d);
             if (manager.currentScene.update) {
                 manager.currentScene.update(d);
             }

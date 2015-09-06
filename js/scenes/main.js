@@ -24,9 +24,9 @@ define(function (require) {
         textureManager.t.wrapS = THREE.RepeatWrapping;
         textureManager.t.wrapT = THREE.RepeatWrapping;
         textureManager.t.repeat.set(10, 10);
-        lambert_material.map   = textureManager.t;
+        //lambert_material.map   = textureManager.t;
 
-        var pws = 100, phs = 100;
+        var pws = 10, phs = 10;
 
         var plane_geometry = new THREE.PlaneGeometry(10, 10, pws, phs),
             plane       = new THREE.Mesh(plane_geometry, lambert_material),
@@ -74,6 +74,9 @@ define(function (require) {
 
         human.castShadow    = true;
         human.receiveShadow = true;
+
+        grid.position.y        = 0.00001;
+        axis_helper.position.y = 0.00002;
 
         scene.add(plane);
         scene.add(player);

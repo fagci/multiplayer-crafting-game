@@ -1,5 +1,5 @@
 define(['three', '../core/scene'], function (THREE, scene) {
-    var hemiLight                   = new THREE.HemisphereLight(0x3388cc, 0xcccccc, 0.6),
+    var hemiLight = new THREE.HemisphereLight(0x3388cc, 0xcccc88, 0.6),
         sunLight                    = new THREE.DirectionalLight(),
         shadowLight                 = new THREE.DirectionalLight();
 
@@ -14,7 +14,7 @@ define(['three', '../core/scene'], function (THREE, scene) {
     shadowLight.shadowCameraNear = 1;
     shadowLight.shadowCameraFar  = 100;
 
-    shadowLight.shadowMapBias     = 0.0001;
+    shadowLight.shadowMapBias = 0.1;
     shadowLight.shadowMapDarkness = 0.8;
     shadowLight.shadowMapWidth    = 1024;
     shadowLight.shadowMapHeight   = 1024;
