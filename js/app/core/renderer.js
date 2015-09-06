@@ -10,7 +10,9 @@ define(['three', '../settings'], function (THREE, settings) {
         2: THREE.PCFShadowMap,
         3: THREE.PCFSoftShadowMap
     }[settings.shadows];
-    console.log(renderer.shadowMapType);
+
+
+    console.log(renderer.shadowMapEnabled);
     function updateSize() {
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.setPixelRatio(window.devicePixelRatio || 1);

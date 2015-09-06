@@ -31,7 +31,6 @@ define(function (require) {
         var plane_geometry = new THREE.PlaneGeometry(10, 10, pws, phs),
             plane       = new THREE.Mesh(plane_geometry, lambert_material),
             grid        = new THREE.GridHelper(10, 1),
-            bbox        = new THREE.BoundingBoxHelper(human, 0xff0000),
             axis_helper = new THREE.AxisHelper(5);
 
         plane.rotation.x = -Math.PI / 2;
@@ -73,14 +72,14 @@ define(function (require) {
         player.position.z             = 4;
         player.children[0].rotation.x = -Math.PI / 18;
 
-        bbox.update();
+        human.castShadow    = true;
+        human.receiveShadow = true;
 
         scene.add(plane);
         scene.add(player);
 
         scene.add(human);
         scene.add(grid);
-        scene.add(bbox);
         scene.add(axis_helper);
 
         camera.lookAt(scene.position);

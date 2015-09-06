@@ -5,6 +5,8 @@
 THREE.PointerLockControls = function (camera, document) {
 
     var scope = this;
+    var mx                = 0, my = 0;
+    var mouse_sensitivity = 0.1;
 
     camera.rotation.set(0, 0, 0);
 
@@ -20,21 +22,14 @@ THREE.PointerLockControls = function (camera, document) {
     var onMouseMove = function (event) {
         if (scope.enabled === false) return;
 
-        var mx, my;
-
         if (event.changedTouches) {
-            mx = event.changedTouches[0].pageX;
-            my = event.changedTouches[0].pageY;
+            mx += event.changedTouches[0].pageX;
+            my += event.changedTouches[0].pageY;
         } else {
-            mx = event.movementX || event.mozMovementX || event.webkitMovementX || 0;
-            my = event.movementY || event.mozMovementY || event.webkitMovementY || 0;
+            mx += event.movementX || event.mozMovementX || event.webkitMovementX || 0;
+            my += event.movementY || event.mozMovementY || event.webkitMovementY || 0;
         }
 
-
-        yawObject.rotation.y -= mx * 0.002;
-        pitchObject.rotation.x -= my * 0.002;
-
-        pitchObject.rotation.x = Math.max(-PI_2, Math.min(PI_2, pitchObject.rotation.x));
 
     };
 
@@ -42,6 +37,15 @@ THREE.PointerLockControls = function (camera, document) {
     document.addEventListener('touchmove', onMouseMove);
 
     this.enabled = false;
+
+    this.update = function (d) {
+        "use strict";
+        yawObject.rotation.y -= mx * mouse_sensitivity * d;
+        pitchObject.rotation.x -= my * mouse_sensitivity * d;
+        mx                     = 0;
+        my                     = 0;
+        pitchObject.rotation.x = Math.max(-PI_2, Math.min(PI_2, pitchObject.rotation.x));
+    };
 
     this.getObject = function () {
 

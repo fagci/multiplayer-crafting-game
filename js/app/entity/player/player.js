@@ -44,6 +44,7 @@ define(function (require) {
         if (player.move.backward) player.translateZ(v * d);
         if (player.move.left) player.translateX(-v * d);
         if (player.move.right) player.translateX(v * d);
+        pointerLock.update(d);
     };
 
     return player;

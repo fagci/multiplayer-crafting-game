@@ -8,13 +8,13 @@ define(['threex', 'player'], function (THREEx, player) {
         if (keyboard.eventMatches(event, 's'))    player.move.backward = true;
         if (keyboard.eventMatches(event, 'a'))    player.move.left = true;
         if (keyboard.eventMatches(event, 'd'))    player.move.right = true;
-    });
+    }, false);
 
     keyboard.domElement.addEventListener('keyup', function (event) {
         if (keyboard.eventMatches(event, 'w'))    player.move.forward = false;
         if (keyboard.eventMatches(event, 's'))    player.move.backward = false;
         if (keyboard.eventMatches(event, 'a'))    player.move.left = false;
         if (keyboard.eventMatches(event, 'd'))    player.move.right = false;
-    });
+    }, false);
     return keyboard;
 });

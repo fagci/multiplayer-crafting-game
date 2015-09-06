@@ -11,28 +11,23 @@
   -moz-border-radius: 3px;
   border-radius: 3px;
 }
-
 .ui-dialog .form-actions {
   margin: 0 15px 15px 15px;
   text-align: right;
 }
-
 .ui-dialog .form-actions .apply {
   border: 1px solid #4c7ea4;
   background-color: #29506d;
   color: #4c7ea4;
 }
-
 .ui-button-text {
   display: none;
 }
-
 .ui-dialog-titlebar-close {
   color: #8dcdff;
   background: none;
   border: none;
 }
-
 .ui-dialog-title {
   color: #8dcdff;
   font-weight: bolder;
@@ -45,7 +40,6 @@
 .ui-dialog-titlebar-close {
   float: right;
 }
-
 .ui-dialog-content {
   background-color: #29506d;
 }
@@ -68,7 +62,6 @@
 .ui-tabs > ul > li.ui-tabs-active {
   background-color: #29506d;
 }
-
 .ui-tabs > ul > li.ui-tabs-active a {
   color: #8dcdff;
 }
@@ -81,7 +74,6 @@
   padding: 15px 15px 0 15px;
   background-color: #29506d;
 }
-
 .ui-tabs-panel .control-group {
   margin-bottom: 10px;
 }
@@ -91,7 +83,6 @@
   font-size: 0.85em;
   margin-right: 10px;
 }
-
 .ui-tabs-panel select {
   background-color: #4c7ea4;
   color: #8dcdff;

@@ -1,27 +1,34 @@
 define(['three', '../core/scene'], function (THREE, scene) {
-    var d                    = 300,
-        hemiLight            = new THREE.HemisphereLight(0xffffff, 0xffffff, 0.6),
-        dirLight             = new THREE.DirectionalLight(0xffffff, 2);
+    var hemiLight                   = new THREE.HemisphereLight(0x3388cc, 0xcccccc, 0.6),
+        sunLight                    = new THREE.DirectionalLight(),
+        shadowLight                 = new THREE.DirectionalLight();
 
-    hemiLight.color.setHSL(0.6, 0.75, 0.5);
-    hemiLight.groundColor.setHSL(0.095, 0.5, 0.5);
-    hemiLight.position.set(0, 200, 0);
-    hemiLight.name = 'Hemisphere light';
+    shadowLight.position.set(25, 70, 25);
+    sunLight.position.set(2500, 7000, 2500);
+    shadowLight.intensity           = 1;
+    shadowLight.castShadow          = true;
+    shadowLight.shadowCameraVisible = true;
 
-    dirLight.position.set(-1, 0.75, 1);
-    dirLight.position.multiplyScalar(50);
-    dirLight.name  = "Directional light";
+//    sunlight.shadowMapSoft = true;
 
-    dirLight.castShadow     = true;
-    dirLight.shadowMapWidth = dirLight.shadowMapHeight = 1024 * 2;
-    dirLight.shadowCameraTop    = d;
-    dirLight.shadowCameraRight  = d;
-    dirLight.shadowCameraLeft   = -d;
-    dirLight.shadowCameraBottom = -d;
-    dirLight.shadowCameraFar = 1000;
-    dirLight.shadowBias      = -0.0001;
-    dirLight.shadowDarkness  = 0.35;
+    shadowLight.shadowCameraNear = 1;
+    shadowLight.shadowCameraFar  = 100;
+
+    shadowLight.shadowMapBias     = 0.0001;
+    shadowLight.shadowMapDarkness = 0.8;
+    shadowLight.shadowMapWidth    = 1024;
+    shadowLight.shadowMapHeight   = 1024;
+
+    var d = 20;
+
+    shadowLight.shadowCameraLeft = -d; // or whatever value works for the scale of your scene
+    shadowLight.shadowCameraRight  = d;
+    shadowLight.shadowCameraTop    = d;
+    shadowLight.shadowCameraBottom = -d;
+
+    shadowLight.onlyShadow = true;
 
     scene.add(hemiLight);
-    scene.add(dirLight);
+    scene.add(sunLight);
+    scene.add(shadowLight);
 });

@@ -1,7 +1,10 @@
 define(['three', /*'net/network',*/ 'player', 'objectManager'],
     function (THREE, /*socket,*/ player, objectManager) {
         "use strict";
-        return new THREE.Object3D(); //TODO: fix loader
+        return new THREE.Mesh(
+            new THREE.TorusKnotGeometry(1, 0.15, 120, 64),
+            new THREE.MeshLambertMaterial({color: 0x666666})
+        ); //TODO: fix loader
         var playerData,
             human_head = objectManager.scoutHead,
             human_body = objectManager.scout;
@@ -9,6 +12,8 @@ define(['three', /*'net/network',*/ 'player', 'objectManager'],
         human_body.position.y = 0;
         human_head.position.y = 1.8;
         human_body.add(human_head);
+
+        //human_body.receiveShadow = true;
 
         //socket.on('message', function (msg) {
         //    /** @prop id */
