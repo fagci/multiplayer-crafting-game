@@ -11,6 +11,8 @@ define(function (require) {
         keyboard = require('keyControls'),
         human            = require('entity/player/human');
 
+    var raycaster = new THREE.Raycaster();
+
     /**
      * Update scene objects
      * @param d
@@ -18,6 +20,12 @@ define(function (require) {
     scene.update = function (d) {
         "use strict";
         player.update(d);
+
+        raycaster.set(camera.position, camera.getWorldDirection());
+        raycaster.far  = 2;
+        raycaster.near = 1;
+        var is         = raycaster.intersectObjects([human]);
+        if (is.length > 0) console.log(is);
     };
 
     scene.init = function () {
