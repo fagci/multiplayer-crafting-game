@@ -1,10 +1,10 @@
 @font-face {
-  font-family: Roboto;
-  src: url(../fonts/Roboto-Regular.ttf);
+  font-family: 'Roboto';
+  src: url('../fonts/Roboto-Regular.ttf');
 }
 @font-face {
-  font-family: RobotoLight;
-  src: url(../fonts/Roboto-Light.ttf);
+  font-family: 'RobotoLight';
+  src: url('../fonts/Roboto-Light.ttf');
 }
 html,
 body {
@@ -17,7 +17,7 @@ body {
   -ms-user-select: none;
   user-select: none;
   background-color: #000000;
-  font-family: Roboto;
+  font-family: Roboto, tahoma, sans-serif;
   cursor: default;
 }
 * {

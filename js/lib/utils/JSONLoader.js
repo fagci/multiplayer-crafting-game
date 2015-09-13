@@ -242,7 +242,7 @@ THREE.JSONLoader.prototype.parse = function (json, texturePath) {
                         uvLayer = json.uvs[i];
 
                         geometry.faceVertexUvs[i][fi]     = [];
-                        geometry.faceVertexUvs[i][fi + 1] = []
+                        geometry.faceVertexUvs[i][fi + 1] = [];
 
                         for (j = 0; j < 4; j++) {
 
@@ -424,14 +424,15 @@ THREE.JSONLoader.prototype.parse = function (json, texturePath) {
 
         }
 
-    };
+    }
 
     function parseSkin() {
-        var influencesPerVertex = ( json.influencesPerVertex !== undefined ) ? json.influencesPerVertex : 2;
+        var influencesPerVertex = ( json.influencesPerVertex !== undefined ) ? json.influencesPerVertex : 2,
+            i, l;
 
         if (json.skinWeights) {
 
-            for (var i = 0, l = json.skinWeights.length; i < l; i += influencesPerVertex) {
+            for (i = 0, l = json.skinWeights.length; i < l; i += influencesPerVertex) {
 
                 var x = json.skinWeights[i];
                 var y = ( influencesPerVertex > 1 ) ? json.skinWeights[i + 1] : 0;
@@ -446,7 +447,7 @@ THREE.JSONLoader.prototype.parse = function (json, texturePath) {
 
         if (json.skinIndices) {
 
-            for (var i = 0, l = json.skinIndices.length; i < l; i += influencesPerVertex) {
+            for (i = 0, l = json.skinIndices.length; i < l; i += influencesPerVertex) {
 
                 var a = json.skinIndices[i];
                 var b = ( influencesPerVertex > 1 ) ? json.skinIndices[i + 1] : 0;
@@ -474,13 +475,14 @@ THREE.JSONLoader.prototype.parse = function (json, texturePath) {
         geometry.animation  = json.animation;
         geometry.animations = json.animations;
 
-    };
+    }
 
     function parseMorphing(scale) {
+        var i, l;
 
         if (json.morphTargets !== undefined) {
 
-            var i, l, v, vl, dstVertices, srcVertices;
+            var v, vl, dstVertices, srcVertices;
 
             for (i = 0, l = json.morphTargets.length; i < l; i++) {
 
@@ -508,7 +510,7 @@ THREE.JSONLoader.prototype.parse = function (json, texturePath) {
 
         if (json.morphColors !== undefined) {
 
-            var i, l, c, cl, dstColors, srcColors, color;
+            var c, cl, dstColors, srcColors, color;
 
             for (i = 0, l = json.morphColors.length; i < l; i++) {
 
@@ -530,8 +532,7 @@ THREE.JSONLoader.prototype.parse = function (json, texturePath) {
             }
 
         }
-
-    };
+    }
 
     if (json.materials === undefined || json.materials.length === 0) {
 

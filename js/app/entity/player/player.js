@@ -1,14 +1,12 @@
 define(function (require) {
-    "use strict";
-    var camera      = require('camera'),
-        WatchJS     = require('watch'),
-        //socket      = require('network'),
-        pointerLock = require('pointerLockControls');
+
+    var camera                 = require('camera'),
+        multiplayer_controller = require('net/multiplayerController'),
+        pointerLock            = require('pointerLockControls');
 
     /** @instance THREE.Mesh **/
-    var player   = pointerLock.getObject();
-    player.name  = 'Player';
-    player.netId = Math.random();
+    var player  = pointerLock.getObject();
+    player.name = 'Player';
     player.children[0].position.y = 1.5; // Head
 
     var v = 1;
@@ -20,24 +18,7 @@ define(function (require) {
         right: false
     };
 
-    function getPlayerInfo(player) {
-        return {
-            id: player.netId,
-            rot: {
-                y: player.rotation.y,
-                x: player.children[0].rotation.x
-            },
-            pos: player.position
-        }
-    }
-
-    function sendPlayerData() {
-        //socket.emit('message', getPlayerInfo(this));
-    }
-
-    WatchJS.watch(player.rotation, sendPlayerData.bind(player));
-    WatchJS.watch(player.children[0].rotation, sendPlayerData.bind(player));
-    WatchJS.watch(player.position, sendPlayerData.bind(player));
+    multiplayer_controller.startWatching(player);
 
     player.update = function (d) {
         if (player.move.forward) player.translateZ(-v * d);

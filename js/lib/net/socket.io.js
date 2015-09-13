@@ -4933,7 +4933,7 @@
                  * Licensed under the MIT license.
                  */
                 (function (chars) {
-                    "use strict";
+
 
                     exports.encode = function (arraybuffer) {
                         var bytes  = new Uint8Array(arraybuffer),

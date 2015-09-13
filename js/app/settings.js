@@ -9,7 +9,7 @@ define([], function () {
         antialiasing: s.antialiasing || 0,
 
         save: function () {
-            "use strict";
+
             window.localStorage.setItem('settings', JSON.stringify(this));
         }
     };

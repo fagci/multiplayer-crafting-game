@@ -1,5 +1,5 @@
 define(['SPE', '../managers/textureManager'], function (SPE, textureManager) {
-    "use strict";
+
     textureManager.raindrop.minFilter = THREE.NearestFilter;
     textureManager.raindrop.flipY     = false;
 

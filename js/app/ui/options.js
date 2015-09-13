@@ -47,13 +47,13 @@ define(['renderer', 'settings', 'dot!settings_t', 'jquery', 'jquery.ui', 'lodash
                     value: k
                 }
             });
-        console.log(shaderOptionsArray);
-        var form                     = template({
+
+        var form  = template({
             anisotropy: anisotropyOptionsArray,
             shader_detail: shaderOptionsArray,
             shadows: shadowsOptionsArray,
             antialiasing: antialiasingOptionsArray
-        }), $form                    = $(form);
+        }), $form = $(form);
 
         $form.find('#tabs').tabs();
         $form.dialog({
@@ -67,7 +67,7 @@ define(['renderer', 'settings', 'dot!settings_t', 'jquery', 'jquery.ui', 'lodash
             }
         });
         $form.submit(function (e) {
-            "use strict";
+
             _.map($(this).serializeArray(), function (v) {
                 settings[v.name] = v.value;
                 settings.save();

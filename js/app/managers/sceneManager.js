@@ -1,5 +1,5 @@
 define(['../core/scene', '../scenes/hud'], function (scene, hud) {
-        "use strict";
+
         var manager          = {};
         manager.currentScene = scene;
         manager.hudScene = hud;

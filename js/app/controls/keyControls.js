@@ -1,5 +1,5 @@
 define(['threex', 'player'], function (THREEx, player) {
-    "use strict";
+
 
     var keyboard = new THREEx.KeyboardState();
 

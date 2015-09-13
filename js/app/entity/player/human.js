@@ -1,30 +1,25 @@
-define(['three', /*'net/network',*/ 'player', 'objectManager'],
-    function (THREE, /*socket,*/ player, objectManager) {
-        "use strict";
-        return new THREE.Mesh(
-            new THREE.TorusKnotGeometry(1, 0.15, 120, 64),
-            new THREE.MeshLambertMaterial({color: 0x666666})
-        ); //TODO: fix loader
+define(['three', 'net/network', 'player', 'objectManager'],
+    function (THREE, socket, player, objectManager) {
+
         var playerData,
             human_head = objectManager.scoutHead,
             human_body = objectManager.scout;
 
         human_body.position.y = 0;
-        human_head.position.y = 1.8;
+        human_head.position.y = 3.18;
+        human_head.position.z = -0.15;
         human_body.add(human_head);
 
-        //human_body.receiveShadow = true;
-
-        //socket.on('message', function (msg) {
-        //    /** @prop id */
-        //    playerData = msg.text;
-        //    if (!playerData || playerData.id == player.netId) return;
-        //    human_body.position.x = playerData.pos.x;
-        //    human_body.position.y = playerData.pos.y;
-        //    human_body.position.z = playerData.pos.z;
-        //    human_body.rotation.y = playerData.rot.y;
-        //    human_head.rotation.x = playerData.rot.x;
-        //});
+        socket.on('message', function (msg) {
+            /** @prop id */
+            playerData = msg.text;
+            if (!playerData || playerData.id == player.netId) return;
+            human_body.position.x = playerData.pos.x;
+            human_body.position.y = playerData.pos.y;
+            human_body.position.z = playerData.pos.z;
+            human_body.rotation.y = playerData.rot.y * Math.PI / 180;
+            human_head.rotation.x = playerData.rot.x * Math.PI / 180;
+        });
 
         return human_body;
     }

@@ -13,8 +13,6 @@ define(['three', '../settings'], function (THREE, settings) {
 
     renderer.autoClear = false;
 
-
-    console.log(renderer.shadowMapEnabled);
     function updateSize() {
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.setPixelRatio(window.devicePixelRatio || 1);

@@ -24,7 +24,11 @@ var require = {
         'conzole': {exports: 'conzole'},
         'watch': {exports: 'WatchJS'},
         'Howler': {exports: 'Howler'},
-        'socket': {exports: 'io'}
+        'socket': {exports: 'io'},
+
+        textureManager: {deps: ['loadingManager']},
+        objectManager: {deps: ['loadingManager']}
+
     },
 
     paths: {
@@ -93,13 +97,13 @@ var require = {
     doT: {
         ext: '.dot', // extension of the templates, defaults to .dot
         templateSettings: {
-            evaluate: /\{\{([\s\S]+?)\}\}/g,
-            interpolate: /\{\{=([\s\S]+?)\}\}/g,
-            encode: /\{\{!([\s\S]+?)\}\}/g,
-            use: /\{\{#([\s\S]+?)\}\}/g,
-            define: /\{\{##\s*([\w\.$]+)\s*(\:|=)([\s\S]+?)#\}\}/g,
+            evaluate: /\{\{([\s\S]+?)}}/g,
+            interpolate: /\{\{=([\s\S]+?)}}/g,
+            encode: /\{\{!([\s\S]+?)}}/g,
+            use: /\{\{#([\s\S]+?)}}/g,
+            define: /\{\{##\s*([\w\.$]+)\s*(\:|=)([\s\S]+?)#}}/g,
             conditional: /\{\{\?(\?)?\s*([\s\S]*?)\s*\}\}/g,
-            iterate: /\{\{~\s*(?:\}\}|([\s\S]+?)\s*\:\s*([\w$]+)\s*(?:\:\s*([\w$]+))?\s*\}\})/g,
+            iterate: /\{\{~\s*(?:}}|([\s\S]+?)\s*:\s*([\w$]+)\s*(?::\s*([\w$]+))?\s*}})/g,
             varname: 'it',
             strip: true,
             append: true,

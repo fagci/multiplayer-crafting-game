@@ -6,7 +6,7 @@ define([
     'cameraOrtho',
     'fpsStats'
 ], function (THREE, renderer, scene_manager, camera, camera_ortho, stats) {
-    "use strict";
+
     var clock = new THREE.Clock();
 
     function animate() {

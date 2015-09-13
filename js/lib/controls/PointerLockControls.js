@@ -39,7 +39,7 @@ THREE.PointerLockControls = function (camera, document) {
     this.enabled = false;
 
     this.update = function (d) {
-        "use strict";
+
         yawObject.rotation.y -= mx * mouse_sensitivity * d;
         pitchObject.rotation.x -= my * mouse_sensitivity * d;
         mx                     = 0;

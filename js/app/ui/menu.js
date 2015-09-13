@@ -13,7 +13,7 @@ define(['jquery', 'sound', 'threex', 'sceneManager', 'pointerLockControls', 'ui/
             document.webkitExitPointerLock;
 
         function fsChange(e) {
-            "use strict";
+
             var fs = document.fullscreen ||
                 document.mozFullScreen ||
                 document.webkitIsFullScreen ||
@@ -38,13 +38,13 @@ define(['jquery', 'sound', 'threex', 'sceneManager', 'pointerLockControls', 'ui/
                     document.addEventListener('mozfullscreenchange', fsChange);
                     document.addEventListener('msfullscreenchange', fsChange);
 
-                    THREEx.FullScreen.request(element);
+                    //THREEx.FullScreen.request(element);
                     element.requestPointerLock();
                     controls.enabled = true;
                     break;
                 case 'playOnline':
                     require(['scenes/multiplayer'], function (s) {
-                        "use strict";
+
                         scene_manager.setCurrent(s);
                     });
 
