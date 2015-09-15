@@ -4,7 +4,14 @@ define(['three', 'loadingManager', 'settings'], function (THREE, loader, setting
         rName,
         gfxFileName,
         textures     = {},
-        GFX = ['sand.jpg', 'raindrop.png', 'testHex.png', 't.png', 'crosshair.png'],
+        GFX = [
+            'sand.jpg',
+            'raindrop.png',
+            'testHex.png',
+            't.png',
+            'crosshair.png',
+            'aup.png'
+        ],
         image_loader = new THREE.ImageLoader(loader);
 
     function onLoad(rName, img) {

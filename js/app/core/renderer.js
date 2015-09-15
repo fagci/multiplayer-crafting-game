@@ -14,7 +14,10 @@ define(['three', '../settings'], function (THREE, settings) {
     renderer.autoClear = false;
 
     function updateSize() {
-        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setSize(
+            window.innerWidth - window.innerWidth % 2, // FIX for canvas
+            window.innerHeight - window.innerHeight % 2
+        );
         renderer.setPixelRatio(window.devicePixelRatio || 1);
     }
 

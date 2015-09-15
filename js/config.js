@@ -19,7 +19,9 @@ var require = {
 
         'dot': {exports: 'doT'},
 
-        'perlin': {exports: 'noise'},
+        'physi': {exports: 'Physijs'},
+
+        'simplex': {exports: 'SimplexNoise'},
         'stats_core': {exports: 'rStats'},
         'conzole': {exports: 'conzole'},
         'watch': {exports: 'WatchJS'},
@@ -44,7 +46,9 @@ var require = {
         dot: '../lib/requirejs/doT',
         text: '../lib/requirejs/text',
 
-        perlin: '../lib/algo/perlin',
+        simplex: '../lib/algo/simplex-noise',
+
+        physi: '../lib/physics/physi',
 
         // Network
         socket: '../lib/net/socket.io',

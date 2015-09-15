@@ -1,15 +1,16 @@
 define(function (require) {
     var THREE            = require('three'),
         camera           = require('camera'),
-        light          = require('light'),
+        light            = require('light'),
         objectManager    = require('objectManager'),
-        textureManager = require('textureManager'),
+        textureManager   = require('textureManager'),
         scene            = require('scene'),// TODO: переделать для использования scene manager'ом
         lambert_material = require('materials/lambert'),
-        perlin           = require('perlin'),
+        SimplexNoise     = require('simplex'),
         player,
-        TextSprite     = require('ui/textSprite'),
-        keyboard       = require('keyControls'),
+        TextSprite       = require('ui/textSprite'),
+        keyboard         = require('keyControls'),
+        s,
         human;
 
     var raycaster = new THREE.Raycaster(), ts, bb;
@@ -24,7 +25,7 @@ define(function (require) {
         player.update(d);
 
         raycaster.set(camera.getWorldPosition(), camera.getWorldDirection());
-        raycaster.far = 3;
+        raycaster.far  = 3;
         raycaster.near = 1;
         /*var is         = raycaster.intersectObjects([human]);
          if (is.length > 0) {
@@ -41,6 +42,14 @@ define(function (require) {
     var axisHelper = new THREE.AxisHelper(5);
 
     scene.init = function () {
+
+        box            = new Physijs.BoxMesh(
+            new THREE.BoxGeometry(0.2, 0.2, 0.2),
+            new THREE.MeshBasicMaterial({color: 0x888888})
+        );
+        box.position.y = 10;
+        scene.add(box);
+
         ts = TextSprite.create('Test');
         scene.add(ts);
 
@@ -60,50 +69,42 @@ define(function (require) {
         var pws = 10, phs = 10;
 
         var plane_geometry = new THREE.PlaneGeometry(10, 10, pws, phs),
-            plane         = new THREE.Mesh(plane_geometry, lambert_material),
-            grid          = new THREE.GridHelper(10, 1),
-            axis_helper   = new THREE.AxisHelper(5);
+            plane,
+            //plane         = new THREE.Mesh(plane_geometry, lambert_material),
+            grid           = new THREE.GridHelper(10, 1),
+            axis_helper    = new THREE.AxisHelper(5);
 
-        plane.rotation.x = -Math.PI / 2;
-        plane.name       = 'Ground';
-        /*
-         var height, level;
 
-         perlin.seed(3333);
+        // Ground
+        NoiseGen = new SimplexNoise;
 
-         for (var i = 0, l = plane_geometry.vertices.length; i < l; i++) {
-         var x = i % pws,
-         y = Math.floor(i / phs);
+        for (var i         = 0; i < plane_geometry.vertices.length; i++) {
+            var vertex = plane_geometry.vertices[i];
+            vertex.z   = NoiseGen.noise(vertex.x / 10, vertex.y / 10) * 2;
+        }
+        plane_geometry.computeFaceNormals();
+        plane_geometry.computeVertexNormals();
+        var plane_material = Physijs.createMaterial(
+            new THREE.MeshLambertMaterial({map: textureManager.sand}),
+            .8, // high friction
+            .4 // low restitution
+        );
+        plane              = new Physijs.HeightfieldMesh(
+            plane_geometry,
+            lambert_material,
+            0
+        );
 
-         height = 0;
-         level  = 8;
-
-         height += (perlin.simplex2(x / level, y / level) / 2 + 0.5) * 0.125;
-         level *= 3;
-         height += (perlin.simplex2(x / level, y / level) / 2 + 0.5) * 0.25;
-         level *= 2;
-         height += (perlin.simplex2(x / level, y / level) / 2 + 0.5) * 0.5;
-         level *= 2;
-         height += (perlin.simplex2(x / level, y / level) / 2 + 0.5);
-         height /= 1 + 0.5 + 0.25 + 0.125;
-
-         plane_geometry.vertices[i].z = (height - 0.5) * 2;
-         }
-
-         plane_geometry.verticesNeedUpdate = true;
-         plane_geometry.computeFaceNormals();
-         plane_geometry.computeVertexNormals();
-         plane_geometry.normalsNeedUpdate  = true;
-         */
-
+        plane.rotation.x    = Math.PI / -2;
+        plane.name          = 'Ground';
         plane.receiveShadow = true;
         plane.castShadow    = true;
 
         player.position.y = 0;
         player.position.z = -4;
-        player.rotation.z = -Math.PI;
+        player.rotation.y = -Math.PI;
 
-        player.children[0].rotation.x = -Math.PI / 18;
+        //player.children[0].rotation.x = -Math.PI / 18;
 
 
         grid.position.y        = 0.00001;
@@ -116,7 +117,7 @@ define(function (require) {
         scene.add(grid);
         scene.add(axis_helper);
 
-        //camera.lookAt(scene.position);
+        camera.lookAt(scene.position);
 
     };
 

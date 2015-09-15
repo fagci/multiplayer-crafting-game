@@ -9,6 +9,7 @@ THREE.PointerLockControls = function (camera, document) {
     var mouse_sensitivity = 0.1;
 
     camera.rotation.set(0, 0, 0);
+    camera.updateProjectionMatrix();
 
     var pitchObject = new THREE.Object3D();
     pitchObject.add(camera);

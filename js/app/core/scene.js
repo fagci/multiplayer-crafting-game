@@ -1,3 +1,3 @@
-define(["three"], function (THREE) {
-    return new THREE.Scene();
+define(["physics"], function (Physijs) {
+    return new Physijs.Scene();
 });
