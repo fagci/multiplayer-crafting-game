@@ -1,62 +1,63 @@
 .rs-base {
-    position: absolute;
-    z-index: 10000;
-    padding: 10px;
-    background-color: #222;
-    font-size: 10px;
-    line-height: 1.2em;
-    width: 350px;
-    font-family: 'Roboto Condensed', tahoma, sans-serif;
-    left: 0;
-    top: 0;
-    overflow: hidden;
+  position: absolute;
+  z-index: 10000;
+  padding: 2px 5px;
+  background-color: #222;
+  font-size: 10px;
+  line-height: 1.2em;
+  width: 250px;
+  font-family: 'Roboto Condensed', tahoma, sans-serif;
+  left: 0;
+  top: 0;
+  overflow: hidden;
 }
 .rs-base h1 {
-    padding: 0;
-    font-size: 1.1em;
-    color: #fff;
-    margin: 0 0 5px;
-    cursor: pointer;
+  padding: 0;
+  font-size: 1.1em;
+  color: #fff;
+  margin: 0 0 5px;
+  cursor: pointer;
 }
 .rs-base div.rs-group {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 .rs-base div.rs-group.hidden {
-    display: none;
+  display: none;
 }
 .rs-base div.rs-fraction {
-    position: relative;
-    margin-bottom: 5px;
+  position: relative;
+  margin-bottom: 5px;
 }
 .rs-base div.rs-fraction p {
-    width: 120px;
-    text-align: right;
-    margin: 0;
-    padding: 0;
+  width: 60px;
+  text-align: right;
+  margin: 0;
+  padding: 0;
 }
 .rs-base div.rs-legend {
-    position: absolute;
-    line-height: 1em;
+  position: absolute;
+  line-height: 1em;
 }
 .rs-base div.rs-counter-base {
-    position: relative;
-    margin: 2px 0;
-    height: 1em;
+  position: relative;
+  margin: 2px 0;
+  height: 1em;
 }
 .rs-base span.rs-counter-id {
-    position: absolute;
-    left: 0;
-    top: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 .rs-base div.rs-counter-value {
-    position: absolute;
-    left: 90px;
-    width: 30px;
-    height: 1em;
-    top: 0;
-    text-align: right;
+  position: absolute;
+  right: 10px;
+  width: 30px;
+  height: 1em;
+  top: 0;
+  text-align: right;
+  color: white !important;
 }
 .rs-base canvas.rs-canvas {
-    position: absolute;
-    right: 0;
+  position: absolute;
+  right: 0;
 }

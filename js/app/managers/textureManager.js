@@ -6,11 +6,11 @@ define(['three', 'loadingManager', 'settings'], function (THREE, loader, setting
         textures     = {},
         GFX = [
             'sand.jpg',
-            'raindrop.png',
-            'testHex.png',
+            //'raindrop.png',
+            //'testHex.png',
             't.png',
             'crosshair.png',
-            'aup.png'
+            //'aup.png'
         ],
         image_loader = new THREE.ImageLoader(loader);
 

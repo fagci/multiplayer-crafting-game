@@ -2,14 +2,12 @@ define(function (require) {
     var THREE           = require('three'),
         cameraOrtho     = require('cameraOrtho'),
         player          = require('player'),
-        texture_manager = require('textureManager'),
-        keyboard        = require('keyControls');
+        texture_manager = require('textureManager');
 
     var ch,
         minimap, ent,
-        scene = new THREE.Scene();
-
-    var mm_cv = window.document.createElement('canvas'),
+        scene = new THREE.Scene(),
+        mm_cv = window.document.createElement('canvas'),
         mm_sz = 256,
         mm_ct, mm_texture;
 
@@ -17,12 +15,13 @@ define(function (require) {
      * Update scene objects
      * @param d
      */
-    scene.update = function (d) {
-        if (ent) {
+    scene.update = function () {
+        /*if (ent) {
             ent.position.x        = ~~(player.position.x / 10 * mm_sz);
             ent.position.y        = ~~(-player.position.z / 10 * mm_sz);
             ent.material.rotation = player.rotation.y;
         }
+
         if (mm_ct) {
             mm_texture.needsUpdate = true;
             mm_ct.clearRect(0, 0, mm_sz - 1, mm_sz - 1);
@@ -31,7 +30,7 @@ define(function (require) {
             mm_ct.moveTo(~~(mm_sz / 2), 0);
             mm_ct.lineTo(~~(mm_sz / 2), mm_sz);
             mm_ct.stroke();
-        }
+        }*/
     };
 
     scene.init = function () {
@@ -49,7 +48,7 @@ define(function (require) {
             useScreenCoordinates: true
         }));
 
-        scene.add(ent);
+        //scene.add(ent);
 
 
         mm_cv.width     = mm_sz;
@@ -73,6 +72,7 @@ define(function (require) {
 
         minimap.scale.set(mm_sz, mm_sz, 1);
         minimap.position.set(0, 0, 1);
+        minimap.position.x = window.width/2 - mm_cv.width/2;
 
         ch.scale.set(32, 32, 1);
         ch.position.set(0, 0, 1);
@@ -80,7 +80,8 @@ define(function (require) {
         ent.position.set(0, 0, 1);
 
         scene.add(ch);
-        scene.add(minimap);
+
+        //scene.add(minimap);
     };
 
     return scene;

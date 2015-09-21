@@ -27,8 +27,8 @@ THREE.PointerLockControls = function (camera, document) {
             mx += event.changedTouches[0].pageX;
             my += event.changedTouches[0].pageY;
         } else {
-            mx += event.movementX || event.mozMovementX || event.webkitMovementX || 0;
-            my += event.movementY || event.mozMovementY || event.webkitMovementY || 0;
+            mx += event.movementX;
+            my += event.movementY;
         }
 
 

@@ -25,10 +25,10 @@ define([
     function animate() {
         scene_manager.updateCurrent(clock.getDelta());
         renderer.clear();
-        if (scene_manager.currentScene) {
+        //if (scene_manager.currentScene) {
             scene_manager.currentScene.simulate();
             renderer.render(scene_manager.currentScene, camera);
-        }
+        //}
         renderer.clearDepth();
         renderer.render(scene_manager.hudScene, camera_ortho);
 

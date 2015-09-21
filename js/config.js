@@ -19,7 +19,7 @@ var require = {
 
         'dot': {exports: 'doT'},
 
-        'physi': {exports: 'Physijs'},
+        'physi': {exports: 'Physijs', deps: ['three']},
 
         'simplex': {exports: 'SimplexNoise'},
         'stats_core': {exports: 'rStats'},

@@ -1,72 +1,72 @@
 .rs-base {
   position: absolute;
   z-index: 10000;
-  padding: 10px;
+  padding: 2px 5px;
   background-color: #222;
   font-size: 10px;
   line-height: 1.2em;
-  width: 350px;
+  width: 250px;
   font-family: 'Roboto Condensed', tahoma, sans-serif;
   left: 0;
   top: 0;
   overflow: hidden;
-}
 
-.rs-base h1 {
-  padding: 0;
-  font-size: 1.1em;
-  color: #fff;
-  margin: 0 0 5px;
-  cursor: pointer;
-}
+  h1 {
+    padding: 0;
+    font-size: 1.1em;
+    color: #fff;
+    margin: 0 0 5px;
+    cursor: pointer;
+  }
 
-.rs-base div.rs-group {
-  margin-bottom: 10px;
-}
+  div.rs-group {
+    margin-bottom: 10px;
+    &.hidden {
+      display: none;
+    }
+  }
 
-.rs-base div.rs-group.hidden {
-  display: none;
-}
+  div.rs-fraction {
+    position: relative;
+    margin-bottom: 5px;
 
-.rs-base div.rs-fraction {
-  position: relative;
-  margin-bottom: 5px;
-}
+    p {
+      width: 60px;
+      text-align: right;
+      margin: 0;
+      padding: 0;
+    }
+  }
 
-.rs-base div.rs-fraction p {
-  width: 120px;
-  text-align: right;
-  margin: 0;
-  padding: 0;
-}
+  div.rs-legend {
+    position: absolute;
+    line-height: 1em;
+  }
 
-.rs-base div.rs-legend {
-  position: absolute;
-  line-height: 1em;
-}
+  div.rs-counter-base {
+    position: relative;
+    margin: 2px 0;
+    height: 1em;
+  }
 
-.rs-base div.rs-counter-base {
-  position: relative;
-  margin: 2px 0;
-  height: 1em;
-}
+  span.rs-counter-id {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
 
-.rs-base span.rs-counter-id {
-  position: absolute;
-  left: 0;
-  top: 0;
-}
+  div.rs-counter-value {
+    position: absolute;
+    right: 10px;
+    width: 30px;
+    height: 1em;
+    top: 0;
+    text-align: right;
+    color:white !important;
+  }
 
-.rs-base div.rs-counter-value {
-  position: absolute;
-  left: 90px;
-  width: 30px;
-  height: 1em;
-  top: 0;
-  text-align: right;
-}
-
-.rs-base canvas.rs-canvas {
-  position: absolute;
-  right: 0;
+  canvas.rs-canvas {
+    position: absolute;
+    right: 0;
+  }
 }

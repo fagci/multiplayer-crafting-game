@@ -16,5 +16,6 @@ define(['threex', 'player'], function (THREEx, player) {
         if (keyboard.eventMatches(event, 'a'))    player.move.left = false;
         if (keyboard.eventMatches(event, 'd'))    player.move.right = false;
     }, false);
+
     return keyboard;
 });
