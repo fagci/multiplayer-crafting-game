@@ -67,7 +67,7 @@ define(['three', 'physics', 'textureManager', 'simplex'],
                     );
 
                     //TODO: доделать мерджинг
-                    m1.makeTranslation(gw / 2 + gnx, 0, gh / 2 + gnz);
+                    //m1.makeTranslation(gw / 2 + gnx, 0, gh / 2 + gnz);
                     geometry.applyMatrix(m1);
 
                     if (!result) {
