@@ -1,4 +1,4 @@
-var io    = require('/usr/local/lib/node_modules/socket.io').listen(8123),
+var io    = require('socket.io').listen(8123),
     _     = require('../js/lib/lodash.min'),
     users = {};
 
